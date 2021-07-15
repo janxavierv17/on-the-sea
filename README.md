@@ -1,4 +1,4 @@
-### One the Sea <img src="http://static.skaip.org/img/emoticons/180x180/f6fcff/waterwave.gif" width="30px">
+### On the Sea 
 ---
 
 🧰 Toolbox
