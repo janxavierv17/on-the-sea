@@ -1,4 +1,4 @@
-### Welcome to On The Sea Web App <img src="http://static.skaip.org/img/emoticons/180x180/f6fcff/waterwave.gif" width="60px">
+### Welcome to On The Sea Web App <img src="http://static.skaip.org/img/emoticons/180x180/f6fcff/waterwave.gif" width="30px">
 ---
 
 🧰 Toolbox
