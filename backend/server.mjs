@@ -21,6 +21,8 @@ async function init() {
 
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
+
+  // Routes
   app.use(Places);
 
   const port = process.env.PORT || 5000;
