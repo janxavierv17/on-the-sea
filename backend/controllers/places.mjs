@@ -1,6 +1,20 @@
 import express from "express";
 import Place from "../model/place.mjs";
 
+export const getPlaces = async (request, response) => {
+  // Get all places from our mongodb.
+  const data = await Place.find({});
+  // Return all places to the frontend for display.
+  if (!data) {
+    response
+      .status(400)
+      .send({ message: "Something went wrong. Try again later." });
+    return;
+  }
+
+  response.status(200).send(data);
+};
+
 export const createPlace = async (request, response) => {
   try {
     // I need to get the data from the request body
@@ -39,12 +53,58 @@ export const createPlace = async (request, response) => {
 
     // Once model has successfuly saved. send a 200 response
     response.status(200).send(data);
-
-    console.log("data:", data);
   } catch (error) {
     response
       .status(500)
       .send({ message: "Something went wrong. Try again later." });
+    console.log("Something went wrong.", error);
+  }
+};
+export const updatePlace = async (request, response) => {
+  try {
+    // Get the id from the request parameters.
+    const { id } = request.params;
+    const {
+      name,
+      featuredImage,
+      guests,
+      rent,
+      baths,
+      beds,
+      images,
+      amenities,
+      bookedDates,
+      location,
+      createdDate,
+    } = request.body;
+
+    // Check if the id exist in our database.
+    if (!id) {
+      response
+        .status(400)
+        .send({ message: "Something went wrong. Try again later." });
+      return;
+    }
+
+    // Use mongoose to findByIdAndUpdate
+    const place = await Place.findByIdAndUpdate(id, {
+      name,
+      featuredImage,
+      guests,
+      rent,
+      baths,
+      beds,
+      images,
+      amenities,
+      bookedDates,
+      location,
+      createdDate,
+    });
+
+    console.log(place);
+
+    response.status(200).send({ message: "Update successful." });
+  } catch (error) {
     console.log("Something went wrong.", error);
   }
 };
@@ -56,7 +116,6 @@ export const deletePlace = async (request, response) => {
 
     // If it exist perform delete.
     if (!id) {
-      console.log(id);
       response
         .status(400)
         .send({ message: "Something went wrong. Try again later." });
@@ -65,7 +124,7 @@ export const deletePlace = async (request, response) => {
 
     // Delete that place with the id from MongoDB.
     const data = await Place.findByIdAndDelete(id);
-
+    console.log("Deleted collection:", data);
     // Send a response to the client whether the delete is successful or not.
     response.status(200).send({ ok: true });
   } catch (error) {

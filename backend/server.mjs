@@ -15,9 +15,12 @@ async function init() {
   );
 
   const db = mongoose.connection;
-  if (db.readyState === 1) {
-    console.log("We're connected.");
-  }
+  db.once("open", function () {
+    console.log("We're connected tot our db cluster");
+  });
+  // if (db.readyState === 1) {
+  //   console.log("We're connected.");
+  // }
 
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
