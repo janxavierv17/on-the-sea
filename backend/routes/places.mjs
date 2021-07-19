@@ -8,6 +8,8 @@ import {
 } from "../controllers/places.mjs";
 
 // Places routes
+
+// Edit route names later ...
 router.get("/api/v1/places", getPlaces);
 router.post("/api/v1/create-place", createPlace);
 router.put("/api/v1/update-place/:id", updatePlace);

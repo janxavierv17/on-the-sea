@@ -1,8 +1,15 @@
+/* 
+Theme
+#004FE9
+#000000 
+#F8B431
+
+#1460F4
+#1257DB
+*/
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Noto Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -12,7 +19,20 @@ code {
     monospace;
 }
 
+.heading {
+  padding: 24px 0 36px 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+}
+
 .place-form {
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  background: white;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -37,4 +57,11 @@ button[aria-checked] {
 
 .place-container {
   border: 1px solid blue;
+  background: rgb(34, 107, 195);
+  background: linear-gradient(
+    25deg,
+    rgba(34, 107, 195, 1) 20%,
+    rgba(45, 140, 255, 1) 66%
+  );
+  color: white;
 }
