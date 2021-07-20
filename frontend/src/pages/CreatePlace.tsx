@@ -27,7 +27,7 @@ export const CreatePlace = () => {
       <pre>{JSON.stringify(formData)}</pre>
       {pages === 1 ? (
         <>
-          <h1>Page {pages}</h1>
+          <h1>What kind of place will you host?</h1>
           <div>
             <Radio
               id="apartment"
@@ -89,61 +89,7 @@ export const CreatePlace = () => {
           </button>
         </>
       ) : null}
-
-      {pages === 2 ? (
-        <>
-          <h1>Page {pages}</h1>
-          <div>
-            <input
-              type="radio"
-              id="apartment"
-              name="typeOfPlace"
-              onChange={handleChange}
-            />
-            <label htmlFor="apartment">Apartment</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              id="rental-unit"
-              name="typeOfPlace"
-              onChange={handleChange}
-            />
-            <label htmlFor="rental-unit">Rental Unit</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              id="house"
-              name="typeOfPlace"
-              onChange={handleChange}
-            />
-            <label htmlFor="house">House</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              id="bed-and-breakfast"
-              name="typeOfPlace"
-              onChange={handleChange}
-            />
-            <label htmlFor="bed-and-breakfast">Bed and Breakfast</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              id="boutique-hotel"
-              name="typeOfPlace"
-              onChange={handleChange}
-            />
-            <label htmlFor="boutique-hotel">Boutique Hotel</label>
-          </div>
-          <button type="button">Cancel</button>
-          <button type="button" onClick={handleNext}>
-            Next
-          </button>
-        </>
-      ) : null}
+      <p>Page {pages}</p>
     </form>
   );
 };
