@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+const Description = styled.label`
+  font-size: 12px;
+  color: grey;
+`;
 const Input = styled.input`
   appearance: none;
   display: none;
@@ -13,7 +17,7 @@ const Image = styled.img`
 `;
 
 const Container = styled.div`
-  padding: 0 7px;
+  padding: 12px 7px;
   border: 1px solid #dddddd;
   border-radius: 7px;
   font-size: 16px;
@@ -25,13 +29,16 @@ const Container = styled.div`
   align-items: center;
 `;
 const Label = styled.label`
-  font-size: 18px;
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
 `;
 
 type RadioTypes = {
   id: string;
-  image: string;
+  image?: string;
   place: string;
+  description?: string;
   value: string;
   children: string;
   currentValue: string;
@@ -42,6 +49,7 @@ export const Radio: React.FC<RadioTypes> = ({
   id,
   image,
   place,
+  description,
   value,
   children,
   currentValue,
@@ -60,10 +68,11 @@ export const Radio: React.FC<RadioTypes> = ({
             onChange={onChange}
           />
           <Label htmlFor={value}>{children}</Label>
+          {description ? (
+            <Description htmlFor={value}>{description}</Description>
+          ) : null}
         </div>
-        <div>
-          <Image src={image} alt="A kind of place" />
-        </div>
+        <div>{image ? <Image src={image} alt="A kind of place" /> : null}</div>
       </Container>
     </>
   );

@@ -18,16 +18,20 @@ const Container = styled.div`
 `;
 
 const InputContainer = styled.div`
+  height: 100vh;
   padding-top: 12px;
   background: white;
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 `;
 
 const Header = styled.h1`
-  text-align: center;
+  text-align: left;
   color: #e3f1ff;
-  padding: 24px 0;
+  padding: 72px 24px;
   margin: 0;
+  font-size: 24px;
+  // font-weight: bold;
 `;
 
 const StickyButtons = styled.div`
@@ -63,12 +67,17 @@ export const CreatePlace = () => {
   const [formData, setFormData] = useState({
     place: "",
     typeOfPlace: "",
+    kindOfPlace: "",
   });
   const [pages, setPages] = useState(1);
 
   const handleNext = () => {
     setPages((prevState) => prevState + 1);
     console.log(pages);
+  };
+
+  const handleBack = () => {
+    setPages((prevState) => prevState - 1);
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -147,13 +156,138 @@ export const CreatePlace = () => {
                   Boutique hotel
                 </Radio>
               </div>
-              <StickyButtons>
-                <PrimaryButton type="button">Cancel</PrimaryButton>
-                <Button type="button" onClick={handleNext}>
-                  Next
-                </Button>
-              </StickyButtons>
             </InputContainer>
+            <StickyButtons>
+              <PrimaryButton type="button">Cancel</PrimaryButton>
+              <Button type="button" onClick={handleNext}>
+                Next
+              </Button>
+            </StickyButtons>
+          </>
+        ) : null}
+
+        {pages === 2 ? (
+          <>
+            <Header>Which of these best describes your place?</Header>
+            <InputContainer>
+              <div>
+                <Radio
+                  id="rental-unit"
+                  value="rental-unit"
+                  place="typeOfPlace"
+                  description="A rented palce within a multi-unit residential building or complex"
+                  currentValue={formData.place}
+                  onChange={handleChange}
+                >
+                  Rental Unit
+                </Radio>
+              </div>
+              <div>
+                <Radio
+                  id="condominium"
+                  value="condominium"
+                  place="typeOfPlace"
+                  description="A place within a multi-unit or complex owned by the residents."
+                  currentValue={formData.place}
+                  onChange={handleChange}
+                >
+                  Condominium (Condo)
+                </Radio>
+              </div>
+              <div>
+                <Radio
+                  id="loft"
+                  value="loft"
+                  place="typeOfPlace"
+                  description="An open layout apartment or condo, which may have short interior walls."
+                  currentValue={formData.place}
+                  onChange={handleChange}
+                >
+                  Loft
+                </Radio>
+              </div>
+              <div>
+                <Radio
+                  id="service-apartment"
+                  value="service-apartment"
+                  place="typeOfPlace"
+                  description="An apartment with hotel-link amenities serviced by a professional management company."
+                  currentValue={formData.place}
+                  onChange={handleChange}
+                >
+                  Service apartment
+                </Radio>
+              </div>
+              <div>
+                <Radio
+                  id="casa-particular"
+                  value="casa-particular"
+                  place="typeOfPlace"
+                  description="A private room in a home that feels like a bed and breakfast in Cuba."
+                  currentValue={formData.place}
+                  onChange={handleChange}
+                >
+                  Casa particular
+                </Radio>
+              </div>
+            </InputContainer>
+            <StickyButtons>
+              <PrimaryButton type="button" onClick={handleBack}>
+                Back
+              </PrimaryButton>
+              <Button type="button" onClick={handleNext}>
+                Next
+              </Button>
+            </StickyButtons>
+          </>
+        ) : null}
+
+        {pages === 3 ? (
+          <>
+            <Header>What kind of space will guest have?</Header>
+            <InputContainer>
+              <div>
+                <Radio
+                  id="entirePlace"
+                  value="entirePlace"
+                  place="kindOfPlace"
+                  currentValue={formData.place}
+                  onChange={handleChange}
+                >
+                  An entire place
+                </Radio>
+              </div>
+              <div>
+                <Radio
+                  id="privateRoom"
+                  value="privateRoom"
+                  place="kindOfPlace"
+                  currentValue={formData.place}
+                  onChange={handleChange}
+                >
+                  A private room
+                </Radio>
+              </div>
+              <div>
+                <Radio
+                  id="sharedRoom"
+                  value="sharedRoom"
+                  place="kindOfPlace"
+                  currentValue={formData.place}
+                  onChange={handleChange}
+                >
+                  A shared room
+                </Radio>
+              </div>
+            </InputContainer>
+            <StickyButtons>
+              <PrimaryButton type="button" onClick={handleBack}>
+                Back
+              </PrimaryButton>
+              <Button type="button" onClick={handleNext}>
+                Next
+              </Button>
+            </StickyButtons>
           </>
         ) : null}
       </form>

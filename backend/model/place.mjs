@@ -12,6 +12,10 @@ const placeSchema = new Schema({
     type: String,
     required: false,
   },
+  kindOfSpace: {
+    type: String,
+    required: false,
+  },
   guests: { type: Number, required: true },
   rent: { type: Number, required: true },
   baths: { type: Number, required: true },
