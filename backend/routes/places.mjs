@@ -11,8 +11,8 @@ import {
 
 // Edit route names later ...
 router.get("/api/v1/places", getPlaces);
-router.post("/api/v1/create-place", createPlace);
-router.put("/api/v1/update-place/:id", updatePlace);
-router.delete("/api/v1/place/:id", deletePlace);
+router.post("/api/v1/places", createPlace);
+router.put("/api/v1/places/:id", updatePlace);
+router.delete("/api/v1/places/:id", deletePlace);
 
 export default router;
