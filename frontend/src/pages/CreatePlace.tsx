@@ -1,12 +1,19 @@
 import { ChangeEvent, useState } from "react";
-import { Radio } from "../components/Radio";
 import styled from "styled-components";
+
+// Components
+import { Radio } from "../components/Radio";
+import { Map } from "../components/Map";
 // Images
 import apartment from "../imgs/apartment.jpeg";
 import bedAndBreakfast from "../imgs/bed-and-breakfast.jpeg";
 import boutiqueHotel from "../imgs/boutique-hotel.jpeg";
 import house from "../imgs/house.jpeg";
 import uniqueSpace from "../imgs/unique-space.jpeg";
+
+/**
+ * gooleMapsAPI - AIzaSyC4sGzMiX14hIXqOBGxEexJz0rbaGoiSoA
+ */
 
 const Container = styled.div`
   background: rgb(34, 107, 195);
@@ -18,7 +25,6 @@ const Container = styled.div`
 `;
 
 const InputContainer = styled.div`
-  height: 100vh;
   padding-top: 12px;
   background: white;
   border-top-left-radius: 10px;
@@ -31,7 +37,7 @@ const Header = styled.h1`
   padding: 72px 24px;
   margin: 0;
   font-size: 24px;
-  // font-weight: bold;
+  font-weight: bold;
 `;
 
 const StickyButtons = styled.div`
@@ -91,6 +97,7 @@ export const CreatePlace = () => {
 
   return (
     <Container>
+      <Map />
       <form>
         {pages === 1 ? (
           <>
@@ -156,13 +163,13 @@ export const CreatePlace = () => {
                   Boutique hotel
                 </Radio>
               </div>
+              <StickyButtons>
+                <PrimaryButton type="button">Cancel</PrimaryButton>
+                <Button type="button" onClick={handleNext}>
+                  Next
+                </Button>
+              </StickyButtons>
             </InputContainer>
-            <StickyButtons>
-              <PrimaryButton type="button">Cancel</PrimaryButton>
-              <Button type="button" onClick={handleNext}>
-                Next
-              </Button>
-            </StickyButtons>
           </>
         ) : null}
 
@@ -230,15 +237,15 @@ export const CreatePlace = () => {
                   Casa particular
                 </Radio>
               </div>
+              <StickyButtons>
+                <PrimaryButton type="button" onClick={handleBack}>
+                  Back
+                </PrimaryButton>
+                <Button type="button" onClick={handleNext}>
+                  Next
+                </Button>
+              </StickyButtons>
             </InputContainer>
-            <StickyButtons>
-              <PrimaryButton type="button" onClick={handleBack}>
-                Back
-              </PrimaryButton>
-              <Button type="button" onClick={handleNext}>
-                Next
-              </Button>
-            </StickyButtons>
           </>
         ) : null}
 
@@ -279,15 +286,15 @@ export const CreatePlace = () => {
                   A shared room
                 </Radio>
               </div>
+              <StickyButtons>
+                <PrimaryButton type="button" onClick={handleBack}>
+                  Back
+                </PrimaryButton>
+                <Button type="button" onClick={handleNext}>
+                  Next
+                </Button>
+              </StickyButtons>
             </InputContainer>
-            <StickyButtons>
-              <PrimaryButton type="button" onClick={handleBack}>
-                Back
-              </PrimaryButton>
-              <Button type="button" onClick={handleNext}>
-                Next
-              </Button>
-            </StickyButtons>
           </>
         ) : null}
       </form>
