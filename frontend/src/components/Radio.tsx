@@ -1,39 +1,43 @@
-import styled from "styled-components";
+// const Description = styled.label`
+//   font-size: 12px;
+//   color: grey;
+// `;
+// const Input = styled.input`
+//   appearance: none;
+//   display: none;
+// `;
 
-const Description = styled.label`
-  font-size: 12px;
-  color: grey;
-`;
-const Input = styled.input`
-  appearance: none;
-  display: none;
-`;
+// const Image = styled.img`
+//   object-fit: cover;
+//   height: 60px;
+//   width: 60px;
+//   border-radius: 15px;
+// `;
 
-const Image = styled.img`
-  object-fit: cover;
-  height: 60px;
-  width: 60px;
-  border-radius: 15px;
-`;
-
-const Container = styled.div`
-  padding: 12px 7px;
-  border: 1px solid #dddddd;
-  border-radius: 7px;
-  font-size: 16px;
-  margin: 12px;
-  height: 4.5em;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: center;
-`;
-const Label = styled.label`
-  display: block;
-  font-size: 14px;
-  font-weight: bold;
-`;
-
+// const Container = styled.div`
+//   padding: 12px 7px;
+//   border: 1px solid #dddddd;
+//   border-radius: 7px;
+//   font-size: 16px;
+//   margin: 12px;
+//   height: 4.5em;
+//   display: flex;
+//   flex-flow: row wrap;
+//   justify-content: space-between;
+//   align-items: center;
+// `;
+// const Label = styled.label`
+//   display: block;
+//   font-size: 14px;
+//   font-weight: bold;
+// `;
+import {
+  Description,
+  Input,
+  Image,
+  RadioContainer,
+  Label,
+} from "./form-steps/form.styles";
 type RadioTypes = {
   id: string;
   image?: string;
@@ -57,7 +61,7 @@ export const Radio: React.FC<RadioTypes> = ({
 }) => {
   return (
     <>
-      <Container>
+      <RadioContainer>
         <div>
           <Input
             type="radio"
@@ -73,7 +77,7 @@ export const Radio: React.FC<RadioTypes> = ({
           ) : null}
         </div>
         <div>{image ? <Image src={image} alt="A kind of place" /> : null}</div>
-      </Container>
+      </RadioContainer>
     </>
   );
 };
