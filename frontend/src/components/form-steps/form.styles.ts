@@ -1,5 +1,7 @@
 import styled from "styled-components";
-export const Description = styled.label`
+
+export const Description = styled.p`
+  padding-top: 12px;
   font-size: 12px;
   color: grey;
 `;
@@ -16,6 +18,7 @@ export const Image = styled.img`
 `;
 
 export const RadioContainer = styled.div`
+  position: relative;
   padding: 12px 7px;
   border: 1px solid #dddddd;
   border-radius: 7px;
@@ -27,10 +30,27 @@ export const RadioContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+
 export const Label = styled.label`
-  display: block;
+  display: flex;
+  padding-left: 12px;
+  flex-flow: column wrap;
+  justify-content: center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
   font-size: 14px;
   font-weight: bold;
+`;
+
+export const TypeOfPlaceLabel = styled(Label)`
+  padding: 12px 0px;
+  display: block;
+  padding-left: 6px;
+  position: absolute;
+  z-index: 9000;
 `;
 
 export const MultiStepFormContainer = styled.div`
@@ -59,7 +79,10 @@ export const Header = styled.h1`
 `;
 
 export const StickyButtons = styled.div`
+  z-index: 9999;
   background-color: white;
+  box-shadow: 0 8px 32px 0 black;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   bottom: 0;
   position: sticky;
   padding: 12px;
@@ -85,4 +108,8 @@ export const PrimaryButton = styled(Button)`
   background-color: white;
   border: 1px solid #2d8cff;
   color: #2d8cff;
+`;
+
+export const KindOfSpaceDiv = styled.div`
+  height: 100vh;
 `;
