@@ -6,7 +6,6 @@ import {
   Image,
   RadioContainer,
   Label,
-  TypeOfPlaceLabel,
 } from "./form-steps/form.styles";
 type RadioTypes = {
   id: string;
@@ -17,6 +16,7 @@ type RadioTypes = {
   children: string;
   currentValue: string;
   onChange: any;
+  pageTwo?: boolean;
 };
 
 export const Radio: React.FC<RadioTypes> = ({
@@ -43,7 +43,9 @@ export const Radio: React.FC<RadioTypes> = ({
           />
 
           {place === "typeOfPlace" ? (
-            <TypeOfPlaceLabel htmlFor={value}>{children}</TypeOfPlaceLabel>
+            <Label htmlFor={value} pageTwo>
+              {children}
+            </Label>
           ) : (
             <Label htmlFor={value}>{children}</Label>
           )}

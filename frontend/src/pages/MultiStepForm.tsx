@@ -4,6 +4,8 @@ import { ChangeEvent, useState } from "react";
 import { Place } from "../components/form-steps/Place";
 import { TypeOfPlace } from "../components/form-steps/TypeOfPlace";
 import { KindOfSpace } from "../components/form-steps/KindOfSpace";
+import { Address } from "../components/form-steps/Adress";
+
 // Styles
 import { MultiStepFormContainer } from "../components/form-steps/form.styles";
 import { Form } from "../components/form-steps/Form";
@@ -38,41 +40,45 @@ export const MultiStepForm: React.FC = () => {
     switch (step) {
       case 1:
         return (
-          <Place
+          <Form
             header="What kind of place will you host?"
-            place={formData.place}
+            step={step}
             handleNext={handleNext}
-            handleChange={handleChange}
-          />
+          >
+            <Place place={formData.place} handleChange={handleChange} />
+          </Form>
         );
       case 2:
         return (
-          <TypeOfPlace
+          <Form
             header="Which of these best describes your place?"
-            place={formData.place}
+            step={step}
             handleNext={handleNext}
-            handleChange={handleChange}
             handleBack={handleBack}
-          />
+          >
+            <TypeOfPlace place={formData.place} handleChange={handleChange} />
+          </Form>
         );
       case 3:
         return (
-          <KindOfSpace
+          <Form
             header="What kind of space will guest have?"
-            place={formData.place}
+            step={step}
             handleNext={handleNext}
-            handleChange={handleChange}
             handleBack={handleBack}
-          />
+          >
+            <KindOfSpace place={formData.place} handleChange={handleChange} />
+          </Form>
         );
-
+      case 4:
+        return (
+          <Form header="Where is your place located?" step={step}>
+            <Address />
+          </Form>
+        );
       default:
         break;
     }
   };
-  return (
-    <MultiStepFormContainer>
-      <Form>{switchSteps()}</Form>
-    </MultiStepFormContainer>
-  );
+  return <MultiStepFormContainer>{switchSteps()}</MultiStepFormContainer>;
 };

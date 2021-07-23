@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface IProps {
+  pageTwo?: boolean;
+}
+
 export const Description = styled.p`
   padding-top: 12px;
   font-size: 12px;
@@ -31,9 +35,9 @@ export const RadioContainer = styled.div`
   align-items: center;
 `;
 
-export const Label = styled.label`
-  display: flex;
-  padding-left: 12px;
+export const Label = styled.label<IProps>`
+  display: ${(prop) => (prop.pageTwo ? "block" : "flex")};
+  padding: ${(prop) => (prop.pageTwo ? "12px 0 12px 6px" : "0 0 0 12px")};
   flex-flow: column wrap;
   justify-content: center;
   position: absolute;
@@ -43,13 +47,6 @@ export const Label = styled.label`
   width: 100%;
   font-size: 14px;
   font-weight: bold;
-`;
-
-export const TypeOfPlaceLabel = styled(Label)`
-  padding: 12px 0px;
-  display: block;
-  padding-left: 6px;
-  position: absolute;
   z-index: 9000;
 `;
 
