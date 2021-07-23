@@ -27,7 +27,6 @@ export const Form: React.FC<FormTypes> = ({
         <Header>{header}</Header>
         <InputContainer>
           {children}
-
           {step === 1 ? (
             <StickyButtons>
               <PrimaryButton type="button">Cancel</PrimaryButton>

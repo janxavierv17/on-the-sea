@@ -1,5 +1,62 @@
-// Components
+// styles
+import { FlexContainer, StatePostcode, Placeholder } from "./form.styles";
 
-export const Address = () => {
-  return <div> </div>;
+type Props = {
+  onChange: any;
+};
+
+export const Address: React.FC<Props> = ({ onChange }) => {
+  return (
+    <FlexContainer>
+      <Placeholder>
+        <input
+          type="text"
+          id="street"
+          name="street"
+          onChange={onChange}
+          required
+        />
+        <label htmlFor="street">Street</label>
+      </Placeholder>
+
+      <Placeholder>
+        <input type="text" id="city" name="city" onChange={onChange} required />
+        <label htmlFor="city">City</label>
+      </Placeholder>
+
+      <StatePostcode>
+        <Placeholder>
+          <input
+            type="text"
+            id="state"
+            name="state"
+            onChange={onChange}
+            required
+          />
+          <label htmlFor="state">State</label>
+        </Placeholder>
+        <Placeholder>
+          <input
+            type="text"
+            id="postcode"
+            name="postcode"
+            onChange={onChange}
+            required
+          />
+          <label htmlFor="postcode">Postcode</label>
+        </Placeholder>
+      </StatePostcode>
+
+      <Placeholder>
+        <input
+          type="text"
+          id="country"
+          name="country"
+          onChange={onChange}
+          required
+        />
+        <label htmlFor="country">Country</label>
+      </Placeholder>
+    </FlexContainer>
+  );
 };

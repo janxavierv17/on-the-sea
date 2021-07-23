@@ -13,8 +13,14 @@ const placeSchema = new Schema({
   amenities: { type: [String], required: false },
   bookedDates: { type: [Date], required: false },
   location: {
-    address: { type: String, required: true },
-    coordinates: { lat: Number, lng: Number, required: false },
+    address: {
+      coordinates: { lat: Number, lng: Number, required: false },
+      street: { type: String },
+      city: { type: String },
+      state: { type: String },
+      postCode: { type: Number },
+      country: { type: String },
+    },
   },
   createdDate: { type: Date, default: Date() },
   typeOfPlace: {

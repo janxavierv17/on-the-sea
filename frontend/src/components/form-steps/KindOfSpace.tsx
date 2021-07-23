@@ -2,7 +2,7 @@
 import { Radio } from "../Radio";
 
 // Styles
-import { KindOfSpaceDiv } from "./form.styles";
+import { Wrapper } from "./form.styles";
 
 type kindOfSpace = {
   place: string;
@@ -11,7 +11,7 @@ type kindOfSpace = {
 export const KindOfSpace: React.FC<kindOfSpace> = ({ place, handleChange }) => {
   return (
     <>
-      <KindOfSpaceDiv>
+      <Wrapper>
         <div>
           <Radio
             id="entirePlace"
@@ -45,7 +45,7 @@ export const KindOfSpace: React.FC<kindOfSpace> = ({ place, handleChange }) => {
             A shared room
           </Radio>
         </div>
-      </KindOfSpaceDiv>
+      </Wrapper>
     </>
   );
 };

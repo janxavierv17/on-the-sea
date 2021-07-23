@@ -9,6 +9,7 @@ export const Description = styled.p`
   font-size: 12px;
   color: grey;
 `;
+
 export const Input = styled.input`
   appearance: none;
   display: none;
@@ -51,6 +52,7 @@ export const Label = styled.label<IProps>`
 `;
 
 export const MultiStepFormContainer = styled.div`
+  height: 85vh;
   background: rgb(34, 107, 195);
   background: linear-gradient(
     25deg,
@@ -107,6 +109,54 @@ export const PrimaryButton = styled(Button)`
   color: #2d8cff;
 `;
 
-export const KindOfSpaceDiv = styled.div`
+export const Wrapper = styled.div`
   height: 100vh;
+`;
+
+export const FlexContainer = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  height: 100vh;
+`;
+
+export const StatePostcode = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
+export const Placeholder = styled.div`
+  position: relative;
+  margin: 42px 24px 24px 24px;
+  input {
+    font-size: 16px;
+    height: 25px;
+    outline: none;
+    border: none;
+    width: 100%;
+    border-bottom: 1px solid #d3d3d3;
+    box-shadow: none !important;
+    :focus {
+      border-color: rgba(45, 140, 255, 1);
+      border-width: medium medium 2px;
+    }
+  }
+
+  label {
+    color: #d3d3d3;
+    font-size: 16px;
+    position: absolute;
+    pointer-events: none;
+    top: 0px;
+    left: 7px;
+    transition: 0.5s ease all;
+  }
+
+  input:focus ~ label,
+  input:not(:focus):valid ~ label {
+    color: #d3d3d3;
+    top: -22px;
+    left: 0px;
+    font-size: 13px;
+    opacity: 1;
+  }
 `;

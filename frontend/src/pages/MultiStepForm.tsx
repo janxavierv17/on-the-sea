@@ -15,8 +15,13 @@ export const MultiStepForm: React.FC = () => {
     place: "",
     typeOfPlace: "",
     kindOfSpace: "",
+    street: "",
+    city: "",
+    state: "",
+    postCode: Number,
+    country: "",
   });
-  const [step, setSteps] = useState(1);
+  const [step, setSteps] = useState(4);
 
   const handleNext = () => {
     setSteps((prevState) => prevState + 1);
@@ -72,8 +77,14 @@ export const MultiStepForm: React.FC = () => {
         );
       case 4:
         return (
-          <Form header="Where is your place located?" step={step}>
-            <Address />
+          <Form
+            header="Where is your place located?"
+            step={step}
+            handleBack={handleBack}
+          >
+            <>
+              <Address onChange={handleChange} />
+            </>
           </Form>
         );
       default:
