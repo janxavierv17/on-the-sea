@@ -12,7 +12,7 @@ type RadioTypes = {
   image?: string;
   place: string;
   description?: string;
-  value: string;
+  value?: string;
   children: string;
   currentValue: string;
   onChange: any;
@@ -50,10 +50,7 @@ export const Radio: React.FC<RadioTypes> = ({
             <Label htmlFor={value}>{children}</Label>
           )}
 
-          {description ? (
-            <Description>{description}</Description>
-          ) : // <Description htmlFor={value}>{description}</Description>
-          null}
+          {description ? <Description>{description}</Description> : null}
         </div>
         <div>{image ? <Image src={image} alt="A kind of place" /> : null}</div>
       </RadioContainer>

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 interface IProps {
   pageTwo?: boolean;
+  block?: boolean;
 }
 
 export const Description = styled.p`
@@ -25,7 +26,7 @@ export const Image = styled.img`
 export const RadioContainer = styled.div`
   position: relative;
   padding: 12px 7px;
-  border: 1px solid #dddddd;
+  border: 1px solid #d3d3d3;
   border-radius: 7px;
   font-size: 16px;
   margin: 12px;
@@ -113,8 +114,8 @@ export const Wrapper = styled.div`
   height: 100vh;
 `;
 
-export const FlexContainer = styled.div`
-  display: flex;
+export const FlexContainer = styled.div<IProps>`
+  display: ${(prop) => (prop.block ? "block" : "flex")};
   flex-flow: column wrap;
   height: 100vh;
 `;
@@ -158,5 +159,29 @@ export const Placeholder = styled.div`
     left: 0px;
     font-size: 13px;
     opacity: 1;
+  }
+`;
+
+export const GuestContainer = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+`;
+export const GuestWidth = styled.div`
+  margin: 12px;
+  padding: 24px 16px 24px 16px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  label {
+    font-size: 18px;
+  }
+
+  input[type="number"] {
+    width: 30%;
+    border: none;
+    border-bottom: 1px solid #d3d3d3;
+    outline: none;
+    text-align: center;
   }
 `;

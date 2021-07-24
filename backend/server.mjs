@@ -18,9 +18,6 @@ async function init() {
   db.once("open", function () {
     console.log("We're connected tot our db cluster");
   });
-  // if (db.readyState === 1) {
-  //   console.log("We're connected.");
-  // }
 
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
