@@ -10,7 +10,10 @@ import { Amenities } from "../components/form-steps/Amenities";
 import { PlaceDescription } from "../components/form-steps/PlaceDescription";
 
 // Styles
-import { MultiStepFormContainer } from "../components/form-steps/form.styles";
+import {
+  MultiStepFormContainer,
+  FlexBoxWrapper,
+} from "../components/form-steps/form.styles";
 import { Form } from "../components/form-steps/Form";
 
 export const MultiStepForm: React.FC = () => {

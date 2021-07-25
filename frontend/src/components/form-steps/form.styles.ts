@@ -1,9 +1,25 @@
 import styled from "styled-components";
 
+/**
+ * Breakpoints
+ * DONE 320px — 480px: Mobile devices.
+ * DONE 481px — 768px: iPads, Tablets.
+ * 769px — 1024px: Small screens, laptops.
+ * 1025px — 1200px: Desktops, large screens.
+ * 1201px and more — Extra large screens, TV.
+ */
+
 interface IProps {
   pageTwo?: boolean;
   block?: boolean;
 }
+
+export const FlexBoxWrapper = styled.div`
+  border: 3px solid red;
+  display: flex;
+  display: row wrap;
+  height: 100vh;
+`;
 
 export const Description = styled.p`
   padding-top: 12px;
@@ -53,8 +69,6 @@ export const Label = styled.label<IProps>`
 `;
 
 export const MultiStepFormContainer = styled.div`
-  height: 85vh;
-  background: rgb(34, 107, 195);
   background: linear-gradient(
     25deg,
     rgba(137, 191, 248, 1) 20%,
@@ -67,6 +81,16 @@ export const InputContainer = styled.div`
   background: white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+
+  @media (min-width: 768px) {
+    width: 50%;
+    border-radius: 0px;
+    height: 100vh;
+  }
+
+  @media (min-width: 1024px) {
+    padding-top: 200px;
+  }
 `;
 
 export const Header = styled.h1`
@@ -76,13 +100,16 @@ export const Header = styled.h1`
   margin: 0;
   font-size: 24px;
   font-weight: bold;
+
+  @media (min-width: 1024px) {
+    font-size: 64px !important;
+  }
 `;
 
 export const StickyButtons = styled.div`
   z-index: 9999;
   background-color: white;
-  box-shadow: 0 8px 32px 0 black;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-top: 1px solid #d3d3d3;
   bottom: 0;
   position: sticky;
   padding: 12px;
@@ -226,5 +253,17 @@ export const CostStyling = styled.div`
     height: 25px;
     width: 25px;
     font-size: 16px;
+  }
+`;
+
+export const FormStyle = styled.form`
+  @media (min-width: 768px) {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    h1 {
+      width: 50%;
+      font-size: 34px;
+    }
   }
 `;

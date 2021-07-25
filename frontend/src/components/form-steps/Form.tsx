@@ -4,6 +4,7 @@ import {
   StickyButtons,
   PrimaryButton,
   Button,
+  FormStyle,
 } from "../form-steps/form.styles";
 
 type FormTypes = {
@@ -15,6 +16,7 @@ type FormTypes = {
   handleBack?: any;
   handleSubmit?: any;
 };
+
 export const Form: React.FC<FormTypes> = ({
   children,
   header,
@@ -25,7 +27,7 @@ export const Form: React.FC<FormTypes> = ({
 }) => {
   return (
     <>
-      <form>
+      <FormStyle>
         <Header>{header}</Header>
         <InputContainer>
           {children}
@@ -56,7 +58,7 @@ export const Form: React.FC<FormTypes> = ({
             </StickyButtons>
           )}
         </InputContainer>
-      </form>
+      </FormStyle>
     </>
   );
 };
