@@ -185,3 +185,46 @@ export const GuestWidth = styled.div`
     text-align: center;
   }
 `;
+
+export const PlaceDescriptionSpacing = styled.div`
+  width: 100%;
+  padding: 12px;
+  margin: 12px;
+
+  label {
+    font-size: 18px;
+  }
+  textarea {
+    margin-top: 12px;
+    width: 80%;
+    height: 100px;
+    font-weight: bold;
+    border: 1px solid #d3d3d3;
+    resize: none;
+    outline: none;
+    font-size: 16px;
+  }
+`;
+
+export const CostStyling = styled.div`
+  width: 100%;
+  padding: 0 12px;
+  margin: 0 12px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: left;
+
+  span {
+    padding: 0 12px 0px 24px;
+    font-size: 24px;
+  }
+
+  label {
+    font-size: 18px;
+  }
+  input {
+    height: 25px;
+    width: 25px;
+    font-size: 16px;
+  }
+`;

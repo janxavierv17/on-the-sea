@@ -1,3 +1,4 @@
+import cors from "cors";
 import express from "express";
 import mongoose from "mongoose";
 import Places from "./routes/places.mjs";
@@ -21,6 +22,7 @@ async function init() {
 
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
+  app.use(cors());
 
   // Routes
   app.use(Places);

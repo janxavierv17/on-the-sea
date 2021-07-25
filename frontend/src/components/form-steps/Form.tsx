@@ -13,6 +13,7 @@ type FormTypes = {
   handleCancel?: any;
   handleNext?: any;
   handleBack?: any;
+  handleSubmit?: any;
 };
 export const Form: React.FC<FormTypes> = ({
   children,
@@ -20,6 +21,7 @@ export const Form: React.FC<FormTypes> = ({
   step,
   handleBack,
   handleNext,
+  handleSubmit,
 }) => {
   return (
     <>
@@ -34,13 +36,22 @@ export const Form: React.FC<FormTypes> = ({
                 Next
               </Button>
             </StickyButtons>
-          ) : (
+          ) : step !== 7 ? (
             <StickyButtons>
               <PrimaryButton type="button" onClick={handleBack}>
                 Back
               </PrimaryButton>
               <Button type="button" onClick={handleNext}>
                 Next
+              </Button>
+            </StickyButtons>
+          ) : (
+            <StickyButtons>
+              <PrimaryButton type="button" onClick={handleBack}>
+                Back
+              </PrimaryButton>
+              <Button type="button" onClick={handleSubmit}>
+                Submit
               </Button>
             </StickyButtons>
           )}

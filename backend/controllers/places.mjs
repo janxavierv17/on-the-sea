@@ -20,36 +20,68 @@ export const createPlace = async (request, response) => {
     // I need to get the data from the request body
     // destructure the data from the body.
     const {
-      name,
-      featuredImage,
+      place,
+      typeOfPlace,
+      kindOfSpace,
+      street,
+      city,
+      state,
+      postCode,
+      country,
       guests,
-      rent,
-      baths,
       beds,
-      images,
-      amenities,
-      bookedDates,
-      location,
-      createdDate,
+      bedRooms,
+      bathRooms,
+      isPool,
+      isHotTub,
+      isPatio,
+      isBbqGrill,
+      isFirePit,
+      isPoolTable,
+      isIndoorFirePlace,
+      isOutdoorDiningArea,
+      isExerciseEquipment,
+      title,
+      description,
+      costs,
     } = request.body;
 
     // Create a new instance of a model
-    const place = new Place({
-      name,
-      featuredImage,
-      guests,
-      rent,
-      baths,
+    const placeData = new Place({
+      place,
+      title,
       beds,
-      images,
-      amenities,
-      bookedDates,
-      location,
-      createdDate,
+      guests,
+      costs,
+      bedRooms,
+      bathRooms,
+      typeOfPlace,
+      description,
+      kindOfSpace,
+      location: {
+        address: {
+          street,
+          city,
+          state,
+          postCode,
+          country,
+        },
+        amenities: {
+          isPool,
+          isHotTub,
+          isPatio,
+          isBbqGrill,
+          isFirePit,
+          isPoolTable,
+          isIndoorFirePlace,
+          isOutdoorDiningArea,
+          isExerciseEquipment,
+        },
+      },
     });
 
     // Save that model
-    const data = await place.save();
+    const data = await placeData.save();
 
     // Once model has successfuly saved. send a 200 response
     response.status(200).send(data);

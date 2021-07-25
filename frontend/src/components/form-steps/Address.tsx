@@ -38,12 +38,12 @@ export const Address: React.FC<Props> = ({ onChange }) => {
         <Placeholder>
           <input
             type="text"
-            id="postcode"
-            name="postcode"
+            id="postCode"
+            name="postCode"
             onChange={onChange}
             required
           />
-          <label htmlFor="postcode">Postcode</label>
+          <label htmlFor="postCode">Postcode</label>
         </Placeholder>
       </StatePostcode>
 
