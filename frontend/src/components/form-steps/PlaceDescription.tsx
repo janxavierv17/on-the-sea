@@ -1,5 +1,5 @@
 import {
-  Header
+  Header,
   FlexContainer,
   PlaceDescriptionSpacing,
   CostStyling,

@@ -144,7 +144,7 @@ export const MultiStepForm: React.FC = () => {
         handleNext={handleNext}
         handleSubmit={handleSubmit}
       >
-        {switchSteps()}{" "}
+        {switchSteps()}
       </Form>
     </MultiStepFormContainer>
   );
