@@ -1,69 +1,96 @@
 // styles
 import {
+  InputContainer,
   Header,
-  FlexContainer,
+  Flex,
   StatePostcode,
   Placeholder,
+  StickyButtons,
+  PrimaryButton,
+  Button,
 } from "./form.styles";
 
 type Props = {
   header: string;
-  onChange: any;
+  handleChange: any;
+  handleNext: any;
+  handleBack: any;
 };
 
-export const Address: React.FC<Props> = ({ header, onChange }) => {
+export const Address: React.FC<Props> = ({
+  header,
+  handleChange,
+  handleNext,
+  handleBack,
+}) => {
   return (
-    <FlexContainer>
+    <Flex>
       <Header>{header}</Header>
-      <Placeholder>
-        <input
-          type="text"
-          id="street"
-          name="street"
-          onChange={onChange}
-          required
-        />
-        <label htmlFor="street">Street</label>
-      </Placeholder>
-
-      <Placeholder>
-        <input type="text" id="city" name="city" onChange={onChange} required />
-        <label htmlFor="city">City</label>
-      </Placeholder>
-
-      <StatePostcode>
+      <InputContainer>
         <Placeholder>
           <input
             type="text"
-            id="state"
-            name="state"
-            onChange={onChange}
+            id="street"
+            name="street"
+            onChange={handleChange}
             required
           />
-          <label htmlFor="state">State</label>
+          <label htmlFor="street">Street</label>
         </Placeholder>
+
         <Placeholder>
           <input
             type="text"
-            id="postCode"
-            name="postCode"
-            onChange={onChange}
+            id="city"
+            name="city"
+            onChange={handleChange}
             required
           />
-          <label htmlFor="postCode">Postcode</label>
+          <label htmlFor="city">City</label>
         </Placeholder>
-      </StatePostcode>
 
-      <Placeholder>
-        <input
-          type="text"
-          id="country"
-          name="country"
-          onChange={onChange}
-          required
-        />
-        <label htmlFor="country">Country</label>
-      </Placeholder>
-    </FlexContainer>
+        <StatePostcode>
+          <Placeholder>
+            <input
+              type="text"
+              id="state"
+              name="state"
+              onChange={handleChange}
+              required
+            />
+            <label htmlFor="state">State</label>
+          </Placeholder>
+          <Placeholder>
+            <input
+              type="text"
+              id="postCode"
+              name="postCode"
+              onChange={handleChange}
+              required
+            />
+            <label htmlFor="postCode">Postcode</label>
+          </Placeholder>
+        </StatePostcode>
+
+        <Placeholder>
+          <input
+            type="text"
+            id="country"
+            name="country"
+            onChange={handleChange}
+            required
+          />
+          <label htmlFor="country">Country</label>
+        </Placeholder>
+        <StickyButtons>
+          <PrimaryButton type="button" onClick={handleBack}>
+            Back
+          </PrimaryButton>
+          <Button type="button" onClick={handleNext}>
+            Next
+          </Button>
+        </StickyButtons>
+      </InputContainer>
+    </Flex>
   );
 };

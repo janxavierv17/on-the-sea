@@ -2,56 +2,70 @@
 import { Radio } from "../Radio";
 
 // Styles
-import { Header, Wrapper } from "./form.styles";
+import {
+  InputContainer,
+  Header,
+  Flex,
+  StickyButtons,
+  PrimaryButton,
+  Button,
+} from "./form.styles";
 
 type kindOfSpace = {
   place: string;
   header: string;
   handleChange: any;
+  handleNext: any;
+  handleBack: any;
 };
 export const KindOfSpace: React.FC<kindOfSpace> = ({
   place,
   header,
   handleChange,
+  handleNext,
+  handleBack,
 }) => {
   return (
-    <>
+    <Flex>
       <Header>{header}</Header>
-      <Wrapper>
-        <div>
-          <Radio
-            id="entirePlace"
-            value="entirePlace"
-            place="kindOfSpace"
-            currentValue={place}
-            onChange={handleChange}
-          >
-            An entire place
-          </Radio>
-        </div>
-        <div>
-          <Radio
-            id="privateRoom"
-            value="privateRoom"
-            place="kindOfSpace"
-            currentValue={place}
-            onChange={handleChange}
-          >
-            A private room
-          </Radio>
-        </div>
-        <div>
-          <Radio
-            id="sharedRoom"
-            value="sharedRoom"
-            place="kindOfSpace"
-            currentValue={place}
-            onChange={handleChange}
-          >
-            A shared room
-          </Radio>
-        </div>
-      </Wrapper>
-    </>
+      <InputContainer>
+        <Radio
+          id="entirePlace"
+          value="entirePlace"
+          place="kindOfSpace"
+          currentValue={place}
+          onChange={handleChange}
+        >
+          An entire place
+        </Radio>
+        <Radio
+          id="privateRoom"
+          value="privateRoom"
+          place="kindOfSpace"
+          currentValue={place}
+          onChange={handleChange}
+        >
+          A private room
+        </Radio>
+
+        <Radio
+          id="sharedRoom"
+          value="sharedRoom"
+          place="kindOfSpace"
+          currentValue={place}
+          onChange={handleChange}
+        >
+          A shared room
+        </Radio>
+        <StickyButtons>
+          <PrimaryButton type="button" onClick={handleBack}>
+            Back
+          </PrimaryButton>
+          <Button type="button" onClick={handleNext}>
+            Next
+          </Button>
+        </StickyButtons>
+      </InputContainer>
+    </Flex>
   );
 };

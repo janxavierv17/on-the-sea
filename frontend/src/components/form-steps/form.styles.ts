@@ -15,7 +15,6 @@ interface IProps {
 }
 
 export const FlexBoxWrapper = styled.div`
-  border: 3px solid red;
   display: flex;
   display: row wrap;
   height: 100vh;
@@ -45,12 +44,16 @@ export const RadioContainer = styled.div`
   border: 1px solid #d3d3d3;
   border-radius: 7px;
   font-size: 16px;
-  margin: 12px;
+  margin: 32px;
   height: 4.5em;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
+  @media (min-width: 1024px) {
+    padding: 12px;
+    margin: 24px;
+  }
 `;
 
 export const Label = styled.label<IProps>`
@@ -69,6 +72,8 @@ export const Label = styled.label<IProps>`
 `;
 
 export const MultiStepFormContainer = styled.div`
+  position: relative;
+  align-items: center;
   background: linear-gradient(
     25deg,
     rgba(137, 191, 248, 1) 20%,
@@ -76,33 +81,34 @@ export const MultiStepFormContainer = styled.div`
   );
 `;
 
+export const Flex = styled.div`
+  @media (min-width: 768px) {
+    display: flex;
+    height: 100vh;
+  }
+`;
+
 export const InputContainer = styled.div`
+  width: 100%;
   padding-top: 12px;
   background: white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-
+  position: relative;
   @media (min-width: 768px) {
+    overflow: auto;
     width: 50%;
-    border-radius: 0px;
-    height: 100vh;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
 
   @media (min-width: 1024px) {
-    padding-top: 200px;
-  }
-`;
-
-export const Header = styled.h1`
-  text-align: left;
-  color: #e3f1ff;
-  padding: 72px 24px;
-  margin: 0;
-  font-size: 24px;
-  font-weight: bold;
-
-  @media (min-width: 1024px) {
-    font-size: 64px !important;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
   }
 `;
 
@@ -118,6 +124,32 @@ export const StickyButtons = styled.div`
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
+
+  @media (min-width: 768px) {
+    margin-top: 24px;
+  }
+  @media (min-width: 1024px) {
+    margin: auto 0 0 0;
+  }
+`;
+
+export const Header = styled.h1`
+  text-align: left;
+  color: #e3f1ff;
+  padding: 72px 24px;
+  margin: 0;
+  font-weight: bold;
+  line-hieght: 58px;
+  @media (min-width: 768px) {
+    margin: auto;
+    font-size: 48px;
+
+    width: 50%;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 48px !important;
+  }
 `;
 
 export const Button = styled.button`
@@ -137,8 +169,9 @@ export const PrimaryButton = styled(Button)`
   color: #2d8cff;
 `;
 
-export const Wrapper = styled.div`
-  height: 100vh;
+export const Wrapper = styled(InputContainer)`
+  margin: 300px 0 0 0;
+  width: 100%;
 `;
 
 export const FlexContainer = styled.div<IProps>`
@@ -194,8 +227,7 @@ export const GuestContainer = styled.div`
   flex-flow: row wrap;
 `;
 export const GuestWidth = styled.div`
-  margin: 12px;
-  padding: 24px 16px 24px 16px;
+  padding: 24px 0;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -253,17 +285,5 @@ export const CostStyling = styled.div`
     height: 25px;
     width: 25px;
     font-size: 16px;
-  }
-`;
-
-export const FormStyle = styled.form`
-  @media (min-width: 768px) {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    h1 {
-      width: 50%;
-      font-size: 34px;
-    }
   }
 `;

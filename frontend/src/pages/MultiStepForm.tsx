@@ -11,7 +11,6 @@ import { Amenities } from "../components/form-steps/Amenities";
 import { PlaceDescription } from "../components/form-steps/PlaceDescription";
 
 // Styles
-import { MultiStepFormContainer } from "../components/form-steps/form.styles";
 import { Form } from "../components/form-steps/Form";
 
 export const MultiStepForm: React.FC = () => {
@@ -77,39 +76,48 @@ export const MultiStepForm: React.FC = () => {
         return (
           <Place
             place={formData.place}
-            handleChange={handleChange}
             header="What kind of place will you host?"
+            handleChange={handleChange}
+            handleNext={handleNext}
           />
         );
       case 2:
         return (
           <TypeOfPlace
             place={formData.place}
-            handleChange={handleChange}
             header="Which of these best describes your place?"
+            handleChange={handleChange}
+            handleNext={handleNext}
+            handleBack={handleBack}
           />
         );
       case 3:
         return (
           <KindOfSpace
             place={formData.place}
-            handleChange={handleChange}
             header="What kind of space will guest have?"
+            handleChange={handleChange}
+            handleNext={handleNext}
+            handleBack={handleBack}
           />
         );
       case 4:
         return (
           <Address
-            onChange={handleChange}
             header="Where is your place located?"
+            handleChange={handleChange}
+            handleNext={handleNext}
+            handleBack={handleBack}
           />
         );
 
       case 5:
         return (
           <Guests
-            onChange={handleChange}
             header="How many guests would you like to welcome?"
+            handleChange={handleChange}
+            handleNext={handleNext}
+            handleBack={handleBack}
           />
         );
 
@@ -117,7 +125,7 @@ export const MultiStepForm: React.FC = () => {
         return (
           <Amenities
             place={formData.place}
-            onChange={handleChange}
+            handleChange={handleChange}
             header="Let guests know what your place has to offer."
           />
         );
@@ -136,16 +144,5 @@ export const MultiStepForm: React.FC = () => {
   };
 
   console.log(formData);
-  return (
-    <MultiStepFormContainer>
-      <Form
-        step={step}
-        handleBack={handleBack}
-        handleNext={handleNext}
-        handleSubmit={handleSubmit}
-      >
-        {switchSteps()}
-      </Form>
-    </MultiStepFormContainer>
-  );
+  return <Form>{switchSteps()}</Form>;
 };

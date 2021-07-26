@@ -7,12 +7,12 @@ import { Header, FlexContainer } from "../form-steps/form.styles";
 type AmenitiesTypes = {
   place: string;
   header: string;
-  onChange: any;
+  handleChange: any;
 };
 // Change these to checkboxes.
 export const Amenities: React.FC<AmenitiesTypes> = ({
   header,
-  onChange,
+  handleChange,
   place,
 }) => {
   return (
@@ -25,7 +25,7 @@ export const Amenities: React.FC<AmenitiesTypes> = ({
           currentValue={place}
           // name
           place="isPool"
-          onChange={onChange}
+          onChange={handleChange}
         >
           Pool
         </Radio>
@@ -37,7 +37,7 @@ export const Amenities: React.FC<AmenitiesTypes> = ({
           value="isHotTub"
           currentValue={place}
           place="isHotTub"
-          onChange={onChange}
+          onChange={handleChange}
         >
           Hot tub
         </Radio>
@@ -48,7 +48,7 @@ export const Amenities: React.FC<AmenitiesTypes> = ({
           value="isPatio"
           currentValue={place}
           place="isPatio"
-          onChange={onChange}
+          onChange={handleChange}
         >
           Patio
         </Radio>
@@ -59,7 +59,7 @@ export const Amenities: React.FC<AmenitiesTypes> = ({
           value="isBqqGrill"
           currentValue={place}
           place="isBqqGrill"
-          onChange={onChange}
+          onChange={handleChange}
         >
           BBQ grill
         </Radio>
@@ -70,7 +70,7 @@ export const Amenities: React.FC<AmenitiesTypes> = ({
           value="isFirePit"
           currentValue={place}
           place="isFirePit"
-          onChange={onChange}
+          onChange={handleChange}
         >
           Fire pit
         </Radio>
@@ -82,7 +82,7 @@ export const Amenities: React.FC<AmenitiesTypes> = ({
           value="isPoolTable"
           currentValue={place}
           place="isPoolTable"
-          onChange={onChange}
+          onChange={handleChange}
         >
           Pool table
         </Radio>
@@ -94,7 +94,7 @@ export const Amenities: React.FC<AmenitiesTypes> = ({
           value="isIndoorFirePlace"
           currentValue={place}
           place="isIndoorFirePlace"
-          onChange={onChange}
+          onChange={handleChange}
         >
           Indoor fire place
         </Radio>
@@ -106,7 +106,7 @@ export const Amenities: React.FC<AmenitiesTypes> = ({
           value="isOutdoorDiningArea"
           currentValue={place}
           place="isOutdoorDiningArea"
-          onChange={onChange}
+          onChange={handleChange}
         >
           Outdoor dining area
         </Radio>
@@ -118,7 +118,7 @@ export const Amenities: React.FC<AmenitiesTypes> = ({
           value="isExerciseEquipment"
           currentValue={place}
           place="isExerciseEquipment"
-          onChange={onChange}
+          onChange={handleChange}
         >
           Exercise equipment
         </Radio>

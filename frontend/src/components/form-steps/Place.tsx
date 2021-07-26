@@ -2,8 +2,14 @@
 import { Radio } from "../Radio";
 
 // Styles
-import { Header } from "../form-steps/form.styles";
-
+import {
+  InputContainer,
+  Header,
+  Flex,
+  StickyButtons,
+  PrimaryButton,
+  Button,
+} from "../form-steps/form.styles";
 // Images
 import apartment from "../../imgs/apartment.jpeg";
 import bedAndBreakfast from "../../imgs/bed-and-breakfast.jpeg";
@@ -15,13 +21,19 @@ type placeType = {
   header: string;
   place: string;
   handleChange: any;
+  handleNext: any;
 };
 
-export const Place: React.FC<placeType> = ({ place, header, handleChange }) => {
+export const Place: React.FC<placeType> = ({
+  place,
+  header,
+  handleChange,
+  handleNext,
+}) => {
   return (
-    <>
+    <Flex>
       <Header>{header}</Header>
-      <div>
+      <InputContainer>
         <Radio
           id="apartment"
           value="apartment"
@@ -32,8 +44,7 @@ export const Place: React.FC<placeType> = ({ place, header, handleChange }) => {
         >
           Apartment
         </Radio>
-      </div>
-      <div>
+
         <Radio
           id="unique-space"
           value="unique-space"
@@ -44,8 +55,7 @@ export const Place: React.FC<placeType> = ({ place, header, handleChange }) => {
         >
           Unique Space
         </Radio>
-      </div>
-      <div>
+
         <Radio
           id="house"
           value="house"
@@ -56,8 +66,7 @@ export const Place: React.FC<placeType> = ({ place, header, handleChange }) => {
         >
           House
         </Radio>
-      </div>
-      <div>
+
         <Radio
           id="bed-and-breakfast"
           value="bed-and-breakfast"
@@ -68,8 +77,6 @@ export const Place: React.FC<placeType> = ({ place, header, handleChange }) => {
         >
           Bed and Breakfast
         </Radio>
-      </div>
-      <div>
         <Radio
           id="boutique-hotel"
           value="boutique-hotel"
@@ -80,7 +87,13 @@ export const Place: React.FC<placeType> = ({ place, header, handleChange }) => {
         >
           Boutique hotel
         </Radio>
-      </div>
-    </>
+        <StickyButtons>
+          <PrimaryButton type="button">Cancel</PrimaryButton>
+          <Button type="button" onClick={handleNext}>
+            Next
+          </Button>
+        </StickyButtons>
+      </InputContainer>
+    </Flex>
   );
 };

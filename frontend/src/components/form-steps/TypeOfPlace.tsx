@@ -2,23 +2,34 @@
 import { Radio } from "../Radio";
 
 // Styles
-import { Header } from "../form-steps/form.styles";
+import {
+  InputContainer,
+  Header,
+  Flex,
+  StickyButtons,
+  PrimaryButton,
+  Button,
+} from "../form-steps/form.styles";
 
 type typeOfPlace = {
   place: string;
   header: string;
   handleChange: any;
+  handleNext: any;
+  handleBack: any;
 };
 
 export const TypeOfPlace: React.FC<typeOfPlace> = ({
   place,
   header,
   handleChange,
+  handleNext,
+  handleBack,
 }) => {
   return (
-    <>
+    <Flex>
       <Header>{header}</Header>
-      <div>
+      <InputContainer>
         <Radio
           id="rental-unit"
           value="rental-unit"
@@ -29,8 +40,7 @@ export const TypeOfPlace: React.FC<typeOfPlace> = ({
         >
           Rental Unit
         </Radio>
-      </div>
-      <div>
+
         <Radio
           id="condominium"
           value="condominium"
@@ -41,8 +51,7 @@ export const TypeOfPlace: React.FC<typeOfPlace> = ({
         >
           Condominium (Condo)
         </Radio>
-      </div>
-      <div>
+
         <Radio
           id="loft"
           value="loft"
@@ -53,8 +62,7 @@ export const TypeOfPlace: React.FC<typeOfPlace> = ({
         >
           Loft
         </Radio>
-      </div>
-      <div>
+
         <Radio
           id="service-apartment"
           value="service-apartment"
@@ -65,8 +73,7 @@ export const TypeOfPlace: React.FC<typeOfPlace> = ({
         >
           Service apartment
         </Radio>
-      </div>
-      <div>
+
         <Radio
           id="casa-particular"
           value="casa-particular"
@@ -77,7 +84,15 @@ export const TypeOfPlace: React.FC<typeOfPlace> = ({
         >
           Casa particular
         </Radio>
-      </div>
-    </>
+        <StickyButtons>
+          <PrimaryButton type="button" onClick={handleBack}>
+            Back
+          </PrimaryButton>
+          <Button type="button" onClick={handleNext}>
+            Next
+          </Button>
+        </StickyButtons>
+      </InputContainer>
+    </Flex>
   );
 };

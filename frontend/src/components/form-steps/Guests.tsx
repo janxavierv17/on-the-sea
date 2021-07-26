@@ -1,58 +1,81 @@
 // Styles
-import { Header, GuestContainer, GuestWidth } from "./form.styles";
+import {
+  InputContainer,
+  Header,
+  Flex,
+  GuestWidth,
+  StickyButtons,
+  PrimaryButton,
+  Button,
+} from "./form.styles";
 
 type GuestTypes = {
   header: string;
-  onChange: any;
+  handleChange: any;
+  handleNext: any;
+  handleBack: any;
 };
 
-export const Guests: React.FC<GuestTypes> = ({ header, onChange }) => {
+export const Guests: React.FC<GuestTypes> = ({
+  header,
+  handleChange,
+  handleBack,
+  handleNext,
+}) => {
   return (
-    <GuestContainer>
+    <Flex>
       <Header>{header}</Header>
-      <GuestWidth>
-        <label htmlFor="guest">Guests</label>
-        <input
-          type="number"
-          id="guests"
-          name="guests"
-          required
-          onChange={onChange}
-        />
-      </GuestWidth>
+      <InputContainer>
+        <GuestWidth>
+          <label htmlFor="guest">Guests</label>
+          <input
+            type="number"
+            id="guests"
+            name="guests"
+            required
+            onChange={handleChange}
+          />
+        </GuestWidth>
 
-      <GuestWidth>
-        <label htmlFor="beds">Beds</label>
-        <input
-          type="number"
-          id="beds"
-          name="beds"
-          required
-          onChange={onChange}
-        />
-      </GuestWidth>
-
-      <GuestWidth>
-        <label htmlFor="bedrooms">Bedrooms</label>
-        <input
-          type="number"
-          id="bedRooms"
-          name="bedRooms"
-          required
-          onChange={onChange}
-        />
-      </GuestWidth>
-
-      <GuestWidth>
-        <label htmlFor="Bathrooms">Bathrooms</label>
-        <input
-          type="number"
-          id="bathRooms"
-          name="bathRooms"
-          required
-          onChange={onChange}
-        />
-      </GuestWidth>
-    </GuestContainer>
+        <GuestWidth>
+          <label htmlFor="beds">Beds</label>
+          <input
+            type="number"
+            id="beds"
+            name="beds"
+            required
+            onChange={handleChange}
+          />
+        </GuestWidth>
+        <GuestWidth>
+          <label htmlFor="bedrooms">Bedrooms</label>
+          <input
+            type="number"
+            id="bedRooms"
+            name="bedRooms"
+            required
+            onChange={handleChange}
+          />
+        </GuestWidth>
+        <GuestWidth>
+          <label htmlFor="Bathrooms">Bathrooms</label>
+          <input
+            type="number"
+            id="bathRooms"
+            name="bathRooms"
+            required
+            onChange={handleChange}
+          />
+        </GuestWidth>
+        <StickyButtons>
+          <PrimaryButton type="button" onClick={handleBack}>
+            Back
+          </PrimaryButton>
+          <Button type="button" onClick={handleNext}>
+            Next
+          </Button>
+        </StickyButtons>
+      </InputContainer>
+    </Flex>
   );
 };

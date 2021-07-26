@@ -5,6 +5,8 @@ const { Schema } = mongoose;
 const placeSchema = new Schema({
   place: { type: String, required: false },
   title: { type: String, required: false },
+
+  // Change the frontend code to receive the same as amenities
   beds: { type: String, required: false },
   guests: { type: String, required: false },
   costs: { type: String, required: false },
@@ -32,7 +34,7 @@ const placeSchema = new Schema({
       coordinates: { lat: Number, lng: Number, required: false },
     },
   },
-  // I'm not sure how type:[String] works.
+  // Change the code in frontend to receive an array of strings.
   amenities: { type: [String], required: false },
   featuredImage: { type: String, required: false },
   images: { type: [String], required: false },
