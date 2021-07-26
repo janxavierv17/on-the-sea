@@ -2,15 +2,21 @@
 import { Radio } from "../Radio";
 
 // Styles
-import { Wrapper } from "./form.styles";
+import { Header, Wrapper } from "./form.styles";
 
 type kindOfSpace = {
   place: string;
+  header: string;
   handleChange: any;
 };
-export const KindOfSpace: React.FC<kindOfSpace> = ({ place, handleChange }) => {
+export const KindOfSpace: React.FC<kindOfSpace> = ({
+  place,
+  header,
+  handleChange,
+}) => {
   return (
     <>
+      <Header>{header}</Header>
       <Wrapper>
         <div>
           <Radio

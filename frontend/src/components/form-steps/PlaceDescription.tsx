@@ -1,19 +1,23 @@
 import {
+  Header
   FlexContainer,
   PlaceDescriptionSpacing,
   CostStyling,
 } from "./form.styles";
 
 type PlaceDescriptionTypes = {
+  header: string;
   onChange: any;
   formData: any;
 };
 export const PlaceDescription: React.FC<PlaceDescriptionTypes> = ({
+  header,
   onChange,
   formData,
 }) => {
   return (
     <FlexContainer>
+      <Header>{header}</Header>
       <PlaceDescriptionSpacing>
         <label htmlFor="title">Create your title</label>
         <textarea

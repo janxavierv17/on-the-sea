@@ -3,20 +3,20 @@ const { Schema } = mongoose;
 
 // Schema
 const placeSchema = new Schema({
-  place: { type: String, required: true },
-  title: { type: String, required: true },
-  beds: { type: String, required: true },
-  guests: { type: String, required: true },
-  costs: { type: String, required: true },
-  bedRooms: { type: String, required: true },
-  bathRooms: { type: String, required: true },
+  place: { type: String, required: false },
+  title: { type: String, required: false },
+  beds: { type: String, required: false },
+  guests: { type: String, required: false },
+  costs: { type: String, required: false },
+  bedRooms: { type: String, required: false },
+  bathRooms: { type: String, required: false },
   typeOfPlace: {
     type: String,
-    required: true,
+    required: false,
   },
   description: {
     type: String,
-    required: true,
+    required: false,
   },
   kindOfSpace: {
     type: String,

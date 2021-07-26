@@ -1,13 +1,15 @@
 // Styles
-import { GuestContainer, GuestWidth } from "./form.styles";
+import { Header, GuestContainer, GuestWidth } from "./form.styles";
 
 type GuestTypes = {
+  header: string;
   onChange: any;
 };
 
-export const Guests: React.FC<GuestTypes> = ({ onChange }) => {
+export const Guests: React.FC<GuestTypes> = ({ header, onChange }) => {
   return (
     <GuestContainer>
+      <Header>{header}</Header>
       <GuestWidth>
         <label htmlFor="guest">Guests</label>
         <input

@@ -1,5 +1,4 @@
 import {
-  Header,
   InputContainer,
   StickyButtons,
   PrimaryButton,
@@ -10,7 +9,6 @@ import {
 type FormTypes = {
   step: number;
   children: any;
-  header?: string;
   handleCancel?: any;
   handleNext?: any;
   handleBack?: any;
@@ -19,7 +17,6 @@ type FormTypes = {
 
 export const Form: React.FC<FormTypes> = ({
   children,
-  header,
   step,
   handleBack,
   handleNext,
@@ -28,7 +25,6 @@ export const Form: React.FC<FormTypes> = ({
   return (
     <>
       <FormStyle>
-        <Header>{header}</Header>
         <InputContainer>
           {children}
           {step === 1 ? (

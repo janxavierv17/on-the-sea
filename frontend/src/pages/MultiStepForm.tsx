@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import axios from "axios";
+
 // Components
 import { Place } from "../components/form-steps/Place";
 import { TypeOfPlace } from "../components/form-steps/TypeOfPlace";
@@ -10,10 +11,7 @@ import { Amenities } from "../components/form-steps/Amenities";
 import { PlaceDescription } from "../components/form-steps/PlaceDescription";
 
 // Styles
-import {
-  MultiStepFormContainer,
-  FlexBoxWrapper,
-} from "../components/form-steps/form.styles";
+import { MultiStepFormContainer } from "../components/form-steps/form.styles";
 import { Form } from "../components/form-steps/Form";
 
 export const MultiStepForm: React.FC = () => {
@@ -77,91 +75,60 @@ export const MultiStepForm: React.FC = () => {
     switch (step) {
       case 1:
         return (
-          <Form
+          <Place
+            place={formData.place}
+            handleChange={handleChange}
             header="What kind of place will you host?"
-            step={step}
-            handleNext={handleNext}
-          >
-            <Place place={formData.place} handleChange={handleChange} />
-          </Form>
+          />
         );
       case 2:
         return (
-          <Form
+          <TypeOfPlace
+            place={formData.place}
+            handleChange={handleChange}
             header="Which of these best describes your place?"
-            step={step}
-            handleNext={handleNext}
-            handleBack={handleBack}
-          >
-            <TypeOfPlace place={formData.place} handleChange={handleChange} />
-          </Form>
+          />
         );
       case 3:
         return (
-          <Form
+          <KindOfSpace
+            place={formData.place}
+            handleChange={handleChange}
             header="What kind of space will guest have?"
-            step={step}
-            handleNext={handleNext}
-            handleBack={handleBack}
-          >
-            <KindOfSpace place={formData.place} handleChange={handleChange} />
-          </Form>
+          />
         );
       case 4:
         return (
-          <Form
+          <Address
+            onChange={handleChange}
             header="Where is your place located?"
-            step={step}
-            handleBack={handleBack}
-            handleNext={handleNext}
-          >
-            <>
-              <Address onChange={handleChange} />
-            </>
-          </Form>
+          />
         );
 
       case 5:
         return (
-          <Form
+          <Guests
+            onChange={handleChange}
             header="How many guests would you like to welcome?"
-            step={step}
-            handleBack={handleBack}
-            handleNext={handleNext}
-          >
-            <>
-              <Guests onChange={handleChange} />
-            </>
-          </Form>
+          />
         );
 
       case 6:
         return (
-          <Form
+          <Amenities
+            place={formData.place}
+            onChange={handleChange}
             header="Let guests know what your place has to offer."
-            step={step}
-            handleBack={handleBack}
-            handleNext={handleNext}
-          >
-            <>
-              <Amenities place={formData.place} onChange={handleChange} />
-            </>
-          </Form>
+          />
         );
 
       case 7:
         return (
-          <Form
+          <PlaceDescription
+            onChange={handleChange}
+            formData={formData}
             header="A little more details for your place."
-            step={step}
-            handleBack={handleBack}
-            handleNext={handleNext}
-            handleSubmit={handleSubmit}
-          >
-            <>
-              <PlaceDescription onChange={handleChange} formData={formData} />
-            </>
-          </Form>
+          />
         );
       default:
         break;
@@ -169,5 +136,16 @@ export const MultiStepForm: React.FC = () => {
   };
 
   console.log(formData);
-  return <MultiStepFormContainer>{switchSteps()}</MultiStepFormContainer>;
+  return (
+    <MultiStepFormContainer>
+      <Form
+        step={step}
+        handleBack={handleBack}
+        handleNext={handleNext}
+        handleSubmit={handleSubmit}
+      >
+        {switchSteps()}{" "}
+      </Form>
+    </MultiStepFormContainer>
+  );
 };

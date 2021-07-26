@@ -1,14 +1,23 @@
 // Components
 import { Radio } from "../Radio";
 
+// Styles
+import { Header } from "../form-steps/form.styles";
+
 type typeOfPlace = {
   place: string;
+  header: string;
   handleChange: any;
 };
 
-export const TypeOfPlace: React.FC<typeOfPlace> = ({ place, handleChange }) => {
+export const TypeOfPlace: React.FC<typeOfPlace> = ({
+  place,
+  header,
+  handleChange,
+}) => {
   return (
     <>
+      <Header>{header}</Header>
       <div>
         <Radio
           id="rental-unit"

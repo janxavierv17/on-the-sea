@@ -1,6 +1,9 @@
 // Components
 import { Radio } from "../Radio";
 
+// Styles
+import { Header } from "../form-steps/form.styles";
+
 // Images
 import apartment from "../../imgs/apartment.jpeg";
 import bedAndBreakfast from "../../imgs/bed-and-breakfast.jpeg";
@@ -9,13 +12,15 @@ import house from "../../imgs/house.jpeg";
 import uniqueSpace from "../../imgs/unique-space.jpeg";
 
 type placeType = {
+  header: string;
   place: string;
   handleChange: any;
 };
 
-export const Place: React.FC<placeType> = ({ place, handleChange }) => {
+export const Place: React.FC<placeType> = ({ place, header, handleChange }) => {
   return (
     <>
+      <Header>{header}</Header>
       <div>
         <Radio
           id="apartment"

@@ -2,20 +2,28 @@
 import { Radio } from "../Radio";
 
 // Styles
-import { FlexContainer } from "../form-steps/form.styles";
+import { Header, FlexContainer } from "../form-steps/form.styles";
 
 type AmenitiesTypes = {
   place: string;
+  header: string;
   onChange: any;
 };
-export const Amenities: React.FC<AmenitiesTypes> = ({ onChange, place }) => {
+// Change these to checkboxes.
+export const Amenities: React.FC<AmenitiesTypes> = ({
+  header,
+  onChange,
+  place,
+}) => {
   return (
     <FlexContainer>
+      <Header>{header}</Header>
       <div>
         <Radio
           id="isPool"
           value="isPool"
           currentValue={place}
+          // name
           place="isPool"
           onChange={onChange}
         >

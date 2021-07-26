@@ -1,13 +1,20 @@
 // styles
-import { FlexContainer, StatePostcode, Placeholder } from "./form.styles";
+import {
+  Header,
+  FlexContainer,
+  StatePostcode,
+  Placeholder,
+} from "./form.styles";
 
 type Props = {
+  header: string;
   onChange: any;
 };
 
-export const Address: React.FC<Props> = ({ onChange }) => {
+export const Address: React.FC<Props> = ({ header, onChange }) => {
   return (
     <FlexContainer>
+      <Header>{header}</Header>
       <Placeholder>
         <input
           type="text"
