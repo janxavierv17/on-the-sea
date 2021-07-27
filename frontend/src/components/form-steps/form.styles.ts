@@ -248,12 +248,12 @@ export const GuestWidth = styled.div`
 export const PlaceDescriptionSpacing = styled.div`
   width: 100%;
   padding: 12px;
-  margin: 12px;
+  margin: 64px 12px 64px 12px;
 
   label {
     font-size: 18px;
   }
-  textarea {
+  input {
     margin-top: 12px;
     width: 80%;
     height: 100px;
@@ -266,13 +266,10 @@ export const PlaceDescriptionSpacing = styled.div`
 `;
 
 export const CostStyling = styled.div`
-  width: 100%;
-  padding: 0 12px;
-  margin: 0 12px;
   display: flex;
   flex-flow: row wrap;
   justify-content: left;
-
+  align-items: center;
   span {
     padding: 0 12px 0px 24px;
     font-size: 24px;
@@ -286,4 +283,30 @@ export const CostStyling = styled.div`
     width: 25px;
     font-size: 16px;
   }
+`;
+
+export const AmenitiesContainer = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: left;
+
+  @media (min-width: 768px) {
+    overflow: auto;
+  }
+`;
+
+export const Checkbox = styled.div`
+  margin: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  width: 125px;
+  height: 125px;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: bold;
 `;

@@ -13,9 +13,28 @@ import { PlaceDescription } from "../components/form-steps/PlaceDescription";
 // Styles
 import { Form } from "../components/form-steps/Form";
 
+type StateTypes = {
+  place: string;
+  typeOfPlace: string;
+  kindOfSpace: string;
+  street: string;
+  city: string;
+  state: string;
+  postCode: string;
+  country: string;
+  guests: number;
+  beds: number;
+  bedRooms: number;
+  bathRooms: number;
+  amenities: string[];
+  title: string;
+  description: string;
+  costs: number;
+};
+
 export const MultiStepForm: React.FC = () => {
-  const [step, setSteps] = useState(1);
-  const [formData, setFormData] = useState({
+  const [step, setSteps] = useState(6);
+  const [formData, setFormData] = useState<StateTypes>({
     place: "",
     typeOfPlace: "",
     kindOfSpace: "",
@@ -28,15 +47,7 @@ export const MultiStepForm: React.FC = () => {
     beds: 0,
     bedRooms: 0,
     bathRooms: 0,
-    isPool: "",
-    isHotTub: "",
-    isPatio: "",
-    isBbqGrill: "",
-    isFirePit: "",
-    isPoolTable: "",
-    isIndoorFirePlace: "",
-    isOutdoorDiningArea: "",
-    isExerciseEquipment: "",
+    amenities: [],
     title: "",
     description: "",
     costs: 0,
@@ -52,12 +63,24 @@ export const MultiStepForm: React.FC = () => {
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setFormData((prevState) => {
-      return {
-        ...prevState,
-        [event.target.name]: event.target.value,
-      };
-    });
+    const { name, value } = event.target;
+    if (name === "amenities") {
+      let hasVal = formData.amenities.includes(value);
+      const newValues = hasVal
+        ? {
+            ...formData,
+            amenities: formData.amenities.filter((item) => item !== value),
+          }
+        : { ...formData, amenities: [...formData.amenities, value] };
+      setFormData(newValues);
+    } else {
+      setFormData((prevState) => {
+        return {
+          ...prevState,
+          [event.target.name]: event.target.value,
+        };
+      });
+    }
   };
 
   const handleSubmit = (event: ChangeEvent<HTMLInputElement>) => {
@@ -124,18 +147,21 @@ export const MultiStepForm: React.FC = () => {
       case 6:
         return (
           <Amenities
-            place={formData.place}
-            handleChange={handleChange}
             header="Let guests know what your place has to offer."
+            handleChange={handleChange}
+            handleNext={handleNext}
+            handleBack={handleBack}
           />
         );
 
       case 7:
         return (
           <PlaceDescription
-            onChange={handleChange}
             formData={formData}
             header="A little more details for your place."
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            handleBack={handleBack}
           />
         );
       default:

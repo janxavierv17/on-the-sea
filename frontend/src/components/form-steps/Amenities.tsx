@@ -1,128 +1,183 @@
-// Components
-import { Radio } from "../Radio";
-
 // Styles
-import { Header, FlexContainer } from "../form-steps/form.styles";
+import {
+  InputContainer,
+  Header,
+  Flex,
+  StickyButtons,
+  PrimaryButton,
+  Button,
+  Input,
+  AmenitiesContainer,
+  Checkbox,
+} from "../form-steps/form.styles";
 
 type AmenitiesTypes = {
-  place: string;
   header: string;
   handleChange: any;
+  handleNext: any;
+  handleBack: any;
 };
-// Change these to checkboxes.
+
 export const Amenities: React.FC<AmenitiesTypes> = ({
   header,
   handleChange,
-  place,
+  handleNext,
+  handleBack,
 }) => {
   return (
-    <FlexContainer>
+    <Flex>
       <Header>{header}</Header>
-      <div>
-        <Radio
-          id="isPool"
-          value="isPool"
-          currentValue={place}
-          // name
-          place="isPool"
-          onChange={handleChange}
-        >
-          Pool
-        </Radio>
-      </div>
+      <InputContainer>
+        <AmenitiesContainer>
+          <Checkbox>
+            <label htmlFor="pool">Pool</label>
+            <Input
+              onChange={handleChange}
+              type="checkbox"
+              name="amenities"
+              id="pool"
+              value="pool"
+            />
+          </Checkbox>
 
-      <div>
-        <Radio
-          id="isHotTub"
-          value="isHotTub"
-          currentValue={place}
-          place="isHotTub"
-          onChange={handleChange}
-        >
-          Hot tub
-        </Radio>
-      </div>
-      <div>
-        <Radio
-          id="isPatio"
-          value="isPatio"
-          currentValue={place}
-          place="isPatio"
-          onChange={handleChange}
-        >
-          Patio
-        </Radio>
-      </div>
-      <div>
-        <Radio
-          id="isBqqGrill"
-          value="isBqqGrill"
-          currentValue={place}
-          place="isBqqGrill"
-          onChange={handleChange}
-        >
-          BBQ grill
-        </Radio>
-      </div>
-      <div>
-        <Radio
-          id="isFirePit"
-          value="isFirePit"
-          currentValue={place}
-          place="isFirePit"
-          onChange={handleChange}
-        >
-          Fire pit
-        </Radio>
-      </div>
+          <Checkbox>
+            <label htmlFor="patio">Patio</label>
+            <Input
+              onChange={handleChange}
+              type="checkbox"
+              name="amenities"
+              id="patio"
+              value="patio"
+            />
+          </Checkbox>
+          <Checkbox>
+            <label htmlFor="bbq-grill">Bbq grill</label>
+            <Input
+              onChange={handleChange}
+              type="checkbox"
+              name="amenities"
+              id="hot-tub"
+              value="bbq-grill"
+            />
+          </Checkbox>
 
-      <div>
-        <Radio
-          id="isPoolTable"
-          value="isPoolTable"
-          currentValue={place}
-          place="isPoolTable"
-          onChange={handleChange}
-        >
-          Pool table
-        </Radio>
-      </div>
+          <Checkbox>
+            <label htmlFor="fire-pit">Fire pit</label>
+            <Input
+              onChange={handleChange}
+              type="checkbox"
+              name="amenities"
+              id="fire-pit"
+              value="fire-pit"
+            />
+          </Checkbox>
 
-      <div>
-        <Radio
-          id="isIndoorFirePlace"
-          value="isIndoorFirePlace"
-          currentValue={place}
-          place="isIndoorFirePlace"
-          onChange={handleChange}
-        >
-          Indoor fire place
-        </Radio>
-      </div>
+          <Checkbox>
+            <label htmlFor="pool-table">Pool table</label>
+            <Input
+              onChange={handleChange}
+              type="checkbox"
+              name="amenities"
+              id="pool-table"
+              value="pool-table"
+            />
+          </Checkbox>
 
-      <div>
-        <Radio
-          id="isOutdoorDiningArea"
-          value="isOutdoorDiningArea"
-          currentValue={place}
-          place="isOutdoorDiningArea"
-          onChange={handleChange}
-        >
-          Outdoor dining area
-        </Radio>
-      </div>
+          <Checkbox>
+            <label htmlFor="indoor-fieplace">Indoor fireplace</label>
+            <Input
+              onChange={handleChange}
+              type="checkbox"
+              name="amenities"
+              id="indoor-fireplace"
+              value="indoor-fireplace"
+            />
+          </Checkbox>
 
-      <div>
-        <Radio
-          id="isExerciseEquipment"
-          value="isExerciseEquipment"
-          currentValue={place}
-          place="isExerciseEquipment"
-          onChange={handleChange}
-        >
-          Exercise equipment
-        </Radio>
-      </div>
-    </FlexContainer>
+          <Checkbox>
+            <label htmlFor="dining-area">Outdoor dining area</label>
+            <Input
+              onChange={handleChange}
+              type="checkbox"
+              name="amenities"
+              id="dining-area"
+              value="dining-area"
+            />
+          </Checkbox>
+
+          <Checkbox>
+            <label htmlFor="exercise-equipment">Exercise equipment</label>
+            <Input
+              onChange={handleChange}
+              type="checkbox"
+              name="amenities"
+              id="exercise-equipment"
+              value="exercise-equipment"
+            />
+          </Checkbox>
+
+          <Checkbox>
+            <label htmlFor="wifi">Wi-Fi</label>
+            <Input
+              onChange={handleChange}
+              type="checkbox"
+              name="amenities"
+              id="wifi"
+              value="wifi"
+            />
+          </Checkbox>
+
+          <Checkbox>
+            <label htmlFor="tv">TV</label>
+            <Input
+              onChange={handleChange}
+              type="checkbox"
+              name="amenities"
+              id="tv"
+              value="tv"
+            />
+          </Checkbox>
+
+          <Checkbox>
+            <label htmlFor="kitchen">Kitchen</label>
+            <Input
+              onChange={handleChange}
+              type="checkbox"
+              name="amenities"
+              id="kitchen"
+              value="kitchen"
+            />
+          </Checkbox>
+          <Checkbox>
+            <label htmlFor="washing-machine">Washing machine</label>
+            <Input
+              onChange={handleChange}
+              type="checkbox"
+              name="amenities"
+              id="washing-machine"
+              value="washing-machine"
+            />
+          </Checkbox>
+          <Checkbox>
+            <label htmlFor="air-conditioning">Air Conditioning</label>
+            <Input
+              onChange={handleChange}
+              type="checkbox"
+              name="amenities"
+              id="air-conditioning"
+              value="air-conditioning"
+            />
+          </Checkbox>
+        </AmenitiesContainer>
+        <StickyButtons>
+          <PrimaryButton type="button" onClick={handleBack}>
+            Back
+          </PrimaryButton>
+          <Button type="button" onClick={handleNext}>
+            Next
+          </Button>
+        </StickyButtons>
+      </InputContainer>
+    </Flex>
   );
 };
