@@ -95,6 +95,7 @@ export const InputContainer = styled.div`
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   position: relative;
+
   @media (min-width: 768px) {
     overflow: auto;
     width: 50%;
@@ -117,7 +118,9 @@ export const StickyButtons = styled.div`
   background-color: white;
   border-top: 1px solid #d3d3d3;
   bottom: 0;
-  position: sticky;
+  left: 0;
+  right: 0;
+  position: fixed;
   padding: 12px;
   height: 45px;
   display: flex;

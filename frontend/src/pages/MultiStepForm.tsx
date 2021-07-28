@@ -33,7 +33,7 @@ type StateTypes = {
 };
 
 export const MultiStepForm: React.FC = () => {
-  const [step, setSteps] = useState(6);
+  const [step, setSteps] = useState(1);
   const [formData, setFormData] = useState<StateTypes>({
     place: "",
     typeOfPlace: "",
@@ -85,12 +85,12 @@ export const MultiStepForm: React.FC = () => {
 
   const handleSubmit = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
+    console.log(formData);
+
     axios
       .post("http://localhost:5000/api/v1/places", formData)
       .then((response) => console.log(response))
       .then((error) => console.log(error));
-    // console.log("Submit button was clicked ...");
-    // alert(`You're about to submit the following: ${JSON.stringify(formData)}`);
   };
 
   const switchSteps = () => {
@@ -169,6 +169,6 @@ export const MultiStepForm: React.FC = () => {
     }
   };
 
-  console.log(formData);
+  // console.log(formData);
   return <Form>{switchSteps()}</Form>;
 };
