@@ -12,6 +12,7 @@ import styled from "styled-components";
 interface IProps {
   pageTwo?: boolean;
   block?: boolean;
+  col?: any;
 }
 
 export const FlexBoxWrapper = styled.div`
@@ -68,7 +69,7 @@ export const Label = styled.label<IProps>`
   width: 100%;
   font-size: 14px;
   font-weight: bold;
-  z-index: 9000;
+  // z-index: 0;
 `;
 
 export const MultiStepFormContainer = styled.div`
@@ -81,15 +82,25 @@ export const MultiStepFormContainer = styled.div`
   );
 `;
 
-export const Flex = styled.div`
+export const Flex = styled.div<IProps>`
   @media (min-width: 768px) {
     display: flex;
+    width: 100%;
+    flex-direction: row;
+  }
+`;
+
+export const FlexRow = styled(Flex)`
+  @media (min-width: 768px) {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
     height: 100vh;
   }
 `;
 
 export const InputContainer = styled.div`
-  width: 100%;
+  overflow-y: auto;
   padding-top: 12px;
   background: white;
   border-top-left-radius: 10px;
@@ -97,8 +108,6 @@ export const InputContainer = styled.div`
   position: relative;
 
   @media (min-width: 768px) {
-    overflow: auto;
-    width: 50%;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     display: flex;
@@ -109,31 +118,31 @@ export const InputContainer = styled.div`
   @media (min-width: 1024px) {
     display: flex;
     flex-direction: column;
-    overflow: auto;
   }
 `;
 
 export const StickyButtons = styled.div`
-  z-index: 9999;
   background-color: white;
   border-top: 1px solid #d3d3d3;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  position: fixed;
-  padding: 12px;
-  height: 45px;
   display: flex;
-  flex-flow: row wrap;
   justify-content: space-between;
-  align-items: center;
+`;
 
-  @media (min-width: 768px) {
-    margin-top: 24px;
-  }
-  @media (min-width: 1024px) {
-    margin: auto 0 0 0;
-  }
+export const Button = styled.button`
+  border-radius: 5px;
+  background-color: #2d8cff;
+  width: 65px;
+  height: 65px;
+  border: none;
+  font-weight: bold;
+  font-size: 16px;
+  color: white;
+`;
+
+export const PrimaryButton = styled(Button)`
+  background-color: white;
+  border: 1px solid #2d8cff;
+  color: #2d8cff;
 `;
 
 export const Header = styled.h1`
@@ -146,30 +155,12 @@ export const Header = styled.h1`
   @media (min-width: 768px) {
     margin: auto;
     font-size: 48px;
-
     width: 50%;
   }
 
   @media (min-width: 1024px) {
     font-size: 48px !important;
   }
-`;
-
-export const Button = styled.button`
-  border-radius: 5px;
-  background-color: #2d8cff;
-  width: 75px;
-  height: 45px;
-  border: none;
-  font-weight: bold;
-  font-size: 16px;
-  color: white;
-`;
-
-export const PrimaryButton = styled(Button)`
-  background-color: white;
-  border: 1px solid #2d8cff;
-  color: #2d8cff;
 `;
 
 export const Wrapper = styled(InputContainer)`

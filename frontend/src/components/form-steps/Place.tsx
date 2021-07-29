@@ -6,6 +6,7 @@ import {
   InputContainer,
   Header,
   Flex,
+  FlexRow,
   StickyButtons,
   PrimaryButton,
   Button,
@@ -33,67 +34,71 @@ export const Place: React.FC<placeType> = ({
   return (
     <Flex>
       <Header>{header}</Header>
-      <InputContainer>
-        <Radio
-          id="apartment"
-          value="apartment"
-          place="place"
-          currentValue={place}
-          onChange={handleChange}
-          image={apartment}
-        >
-          Apartment
-        </Radio>
+      <FlexRow>
+        <InputContainer>
+          <Radio
+            id="apartment"
+            value="apartment"
+            place="place"
+            currentValue={place}
+            onChange={handleChange}
+            image={apartment}
+          >
+            Apartment
+          </Radio>
 
-        <Radio
-          id="unique-space"
-          value="unique-space"
-          place="place"
-          currentValue={place}
-          onChange={handleChange}
-          image={uniqueSpace}
-        >
-          Unique Space
-        </Radio>
+          <Radio
+            id="unique-space"
+            value="unique-space"
+            place="place"
+            currentValue={place}
+            onChange={handleChange}
+            image={uniqueSpace}
+          >
+            Unique Space
+          </Radio>
 
-        <Radio
-          id="house"
-          value="house"
-          place="place"
-          currentValue={place}
-          onChange={handleChange}
-          image={house}
-        >
-          House
-        </Radio>
+          <Radio
+            id="house"
+            value="house"
+            place="place"
+            currentValue={place}
+            onChange={handleChange}
+            image={house}
+          >
+            House
+          </Radio>
 
-        <Radio
-          id="bed-and-breakfast"
-          value="bed-and-breakfast"
-          place="place"
-          currentValue={place}
-          onChange={handleChange}
-          image={bedAndBreakfast}
-        >
-          Bed and Breakfast
-        </Radio>
-        <Radio
-          id="boutique-hotel"
-          value="boutique-hotel"
-          place="place"
-          currentValue={place}
-          onChange={handleChange}
-          image={boutiqueHotel}
-        >
-          Boutique hotel
-        </Radio>
-        <StickyButtons>
-          <PrimaryButton type="button">Cancel</PrimaryButton>
-          <Button type="button" onClick={handleNext}>
-            Next
-          </Button>
-        </StickyButtons>
-      </InputContainer>
+          <Radio
+            id="bed-and-breakfast"
+            value="bed-and-breakfast"
+            place="place"
+            currentValue={place}
+            onChange={handleChange}
+            image={bedAndBreakfast}
+          >
+            Bed and Breakfast
+          </Radio>
+          <Radio
+            id="boutique-hotel"
+            value="boutique-hotel"
+            place="place"
+            currentValue={place}
+            onChange={handleChange}
+            image={boutiqueHotel}
+          >
+            Boutique hotel
+          </Radio>
+        </InputContainer>
+        <div>
+          <StickyButtons>
+            <PrimaryButton type="button">Cancel</PrimaryButton>
+            <Button type="button" onClick={handleNext}>
+              Next
+            </Button>
+          </StickyButtons>
+        </div>
+      </FlexRow>
     </Flex>
   );
 };
