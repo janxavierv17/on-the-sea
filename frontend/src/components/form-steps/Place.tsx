@@ -77,6 +77,7 @@ export const Place: React.FC<placeType> = ({
         >
           Bed and Breakfast
         </Radio>
+
         <Radio
           id="boutique-hotel"
           value="boutique-hotel"

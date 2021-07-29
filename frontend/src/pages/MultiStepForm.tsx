@@ -9,8 +9,6 @@ import { Address } from "../components/form-steps/Address";
 import { Guests } from "../components/form-steps/Guests";
 import { Amenities } from "../components/form-steps/Amenities";
 import { PlaceDescription } from "../components/form-steps/PlaceDescription";
-
-// Styles
 import { Form } from "../components/form-steps/Form";
 
 type StateTypes = {
