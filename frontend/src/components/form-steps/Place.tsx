@@ -33,6 +33,7 @@ export const Place: React.FC<placeType> = ({
   return (
     <Flex>
       <Header>{header}</Header>
+
       <InputContainer>
         <Radio
           id="apartment"
@@ -87,12 +88,12 @@ export const Place: React.FC<placeType> = ({
         >
           Boutique hotel
         </Radio>
-        <StickyButtons>
+        {/* <StickyButtons>
           <PrimaryButton type="button">Cancel</PrimaryButton>
           <Button type="button" onClick={handleNext}>
             Next
           </Button>
-        </StickyButtons>
+        </StickyButtons> */}
       </InputContainer>
     </Flex>
   );

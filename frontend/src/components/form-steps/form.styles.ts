@@ -89,13 +89,15 @@ export const Flex = styled.div`
 `;
 
 export const InputContainer = styled.div`
+  border: 3px solid red;
   width: 100%;
   padding-top: 12px;
   background: white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   position: relative;
-
+  // height: calc(100vh - calc(88px + 82px)) !important;
+  margin-top: 88px;
   @media (min-width: 768px) {
     overflow: auto;
     width: 50%;
@@ -105,7 +107,6 @@ export const InputContainer = styled.div`
     flex-direction: column;
     justify-content: space-around;
   }
-
   @media (min-width: 1024px) {
     display: flex;
     flex-direction: column;
@@ -117,9 +118,9 @@ export const StickyButtons = styled.div`
   z-index: 9999;
   background-color: white;
   border-top: 1px solid #d3d3d3;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  // bottom: 0;
+  // left: 0;
+  // right: 0;
   position: fixed;
   padding: 12px;
   height: 45px;
@@ -129,7 +130,7 @@ export const StickyButtons = styled.div`
   align-items: center;
 
   @media (min-width: 768px) {
-    margin-top: 24px;
+    // margin-top: 24px;
   }
   @media (min-width: 1024px) {
     margin: auto 0 0 0;
@@ -146,10 +147,8 @@ export const Header = styled.h1`
   @media (min-width: 768px) {
     margin: auto;
     font-size: 48px;
-
     width: 50%;
   }
-
   @media (min-width: 1024px) {
     font-size: 48px !important;
   }
@@ -204,7 +203,6 @@ export const Placeholder = styled.div`
       border-width: medium medium 2px;
     }
   }
-
   label {
     color: #d3d3d3;
     font-size: 16px;
@@ -214,7 +212,6 @@ export const Placeholder = styled.div`
     left: 7px;
     transition: 0.5s ease all;
   }
-
   input:focus ~ label,
   input:not(:focus):valid ~ label {
     color: #d3d3d3;
@@ -234,11 +231,9 @@ export const GuestWidth = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-
   label {
     font-size: 18px;
   }
-
   input[type="number"] {
     width: 30%;
     border: none;
@@ -252,7 +247,6 @@ export const PlaceDescriptionSpacing = styled.div`
   width: 100%;
   padding: 12px;
   margin: 64px 12px 64px 12px;
-
   label {
     font-size: 18px;
   }
@@ -277,7 +271,6 @@ export const CostStyling = styled.div`
     padding: 0 12px 0px 24px;
     font-size: 24px;
   }
-
   label {
     font-size: 18px;
   }
@@ -293,7 +286,6 @@ export const AmenitiesContainer = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: left;
-
   @media (min-width: 768px) {
     overflow: auto;
   }
