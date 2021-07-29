@@ -1,6 +1,5 @@
 // import styled from "styled-components";
 
-import { IncomingMessage } from "http";
 import {
   Description,
   Input,
@@ -31,11 +30,10 @@ export const Radio: React.FC<RadioTypes> = ({
   onChange,
 }) => {
   return (
-    <RadioContainer>
-      {place === "typeOfPlace" ? (
-        <label htmlFor={value}>
-          {children}
-          <input
+    <>
+      <RadioContainer>
+        <div>
+          <Input
             type="radio"
             id={id}
             name={place}
@@ -43,33 +41,19 @@ export const Radio: React.FC<RadioTypes> = ({
             checked={value === currentValue}
             onChange={onChange}
           />
-          <div>{image ? <img src={image} alt="A kind of place" /> : null}</div>
-        </label>
-      ) : (
-        <label htmlFor={value}>
-          {children}
-          <input
-            type="radio"
-            id={id}
-            name={place}
-            value={value}
-            checked={value === currentValue}
-            onChange={onChange}
-          />
-          <div>{image ? <img src={image} alt="A kind of place" /> : null}</div>
-        </label>
-      )}
 
-      {/* <input
-          type="radio"
-          id={id}
-          name={place}
-          value={value}
-          checked={value === currentValue}
-          onChange={onChange}
-      />
-      */}
-      <div>{description ? <Description>{description}</Description> : null}</div>
-    </RadioContainer>
+          {place === "typeOfPlace" ? (
+            <Label htmlFor={value} pageTwo>
+              {children}
+            </Label>
+          ) : (
+            <Label htmlFor={value}>{children}</Label>
+          )}
+
+          {description ? <Description>{description}</Description> : null}
+        </div>
+        <div>{image ? <Image src={image} alt="A kind of place" /> : null}</div>
+      </RadioContainer>
+    </>
   );
 };

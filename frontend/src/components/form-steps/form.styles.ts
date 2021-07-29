@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 /**
- *  minimum width is greater or equal
- *  max width is less or equal
  * Breakpoints
  * DONE 320px — 480px: Mobile devices.
  * DONE 481px — 768px: iPads, Tablets.
@@ -15,15 +13,6 @@ interface IProps {
   pageTwo?: boolean;
   block?: boolean;
 }
-
-export const InputContainer = styled.div`
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  background: white;
-  height: 100vh;
-  overflow: auto;
-  padding: 7px;
-`;
 
 export const FlexBoxWrapper = styled.div`
   display: flex;
@@ -42,69 +31,47 @@ export const Input = styled.input`
   display: none;
 `;
 
-export const RadioContainer = styled.div`
-  position: relative;
-  overflow: auto;
-  height: 135px;
-  border: 1px solid #d3d3d3;
-  margin: 7px;
-  input[type="radio"] {
-    appearance: none;
-  }
-
-  label {
-    padding: 0 7px 0 7px;
-    height: 100%;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    right: 0px;
-    left: 0px;
-  }
-
-  label:checked {
-    border: 3px solid red;
-  }
-
-  img {
-    height: 100%;
-    width: 135px;
-    border-radius: 20px;
-  }
-`;
-
 export const Image = styled.img`
-  margin-right: 12px;
   object-fit: cover;
   height: 60px;
   width: 60px;
   border-radius: 15px;
 `;
 
+export const RadioContainer = styled.div`
+  position: relative;
+  padding: 12px 7px;
+  border: 1px solid #d3d3d3;
+  border-radius: 7px;
+  font-size: 16px;
+  margin: 32px;
+  height: 4.5em;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  @media (min-width: 1024px) {
+    padding: 12px;
+    margin: 24px;
+  }
+`;
+
 export const Label = styled.label<IProps>`
-  border: 3px solid red;
   display: ${(prop) => (prop.pageTwo ? "block" : "flex")};
-  // padding: ${(prop) => (prop.pageTwo ? "12px 0 12px 6px" : "5px")};
+  padding: ${(prop) => (prop.pageTwo ? "12px 0 12px 6px" : "0 0 0 12px")};
   flex-flow: column wrap;
   justify-content: center;
   position: absolute;
-  top: -4px;
+  top: 0px;
   left: 0px;
-  right: 0px;
-  bottom: 0px;
   height: 100%;
-  // width: 95%;
+  width: 100%;
   font-size: 14px;
   font-weight: bold;
-  z-index: 1;
+  z-index: 9000;
 `;
 
 export const MultiStepFormContainer = styled.div`
-  height: 100vh;
   position: relative;
   align-items: center;
   background: linear-gradient(
@@ -121,8 +88,33 @@ export const Flex = styled.div`
   }
 `;
 
+export const InputContainer = styled.div`
+  width: 100%;
+  padding-top: 12px;
+  background: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  position: relative;
+
+  @media (min-width: 768px) {
+    overflow: auto;
+    width: 50%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  @media (min-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
+`;
+
 export const StickyButtons = styled.div`
-  margin-top: 300px;
+  z-index: 9999;
   background-color: white;
   border-top: 1px solid #d3d3d3;
   bottom: 0;
@@ -135,18 +127,12 @@ export const StickyButtons = styled.div`
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
-  z-index: 9000;
 
   @media (min-width: 768px) {
-    width: 50%;
-    left: initial;
+    margin-top: 24px;
   }
   @media (min-width: 1024px) {
-    width: 50%;
-  }
-
-  @media (min-width: 1440px) {
-    width: 46%;
+    margin: auto 0 0 0;
   }
 `;
 
