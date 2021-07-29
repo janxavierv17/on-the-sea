@@ -38,7 +38,7 @@ export const Radio: React.FC<RadioTypes> = ({
             id={id}
             name={place}
             value={value}
-            // checked={value === currentValue}
+            checked={value === currentValue}
             onChange={onChange}
           />
 
@@ -51,10 +51,8 @@ export const Radio: React.FC<RadioTypes> = ({
           )}
 
           {description ? <Description>{description}</Description> : null}
-          <div>
-            {image ? <Image src={image} alt="A kind of place" /> : null}
-          </div>
         </div>
+        <div>{image ? <Image src={image} alt="A kind of place" /> : null}</div>
       </RadioContainer>
     </>
   );
