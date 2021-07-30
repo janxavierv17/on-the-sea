@@ -6,6 +6,7 @@ import {
   InputContainer,
   Header,
   Flex,
+  FlexRow,
   StickyButtons,
   PrimaryButton,
   Button,
@@ -28,44 +29,49 @@ export const KindOfSpace: React.FC<kindOfSpace> = ({
   return (
     <Flex>
       <Header>{header}</Header>
-      <InputContainer>
-        <Radio
-          id="entirePlace"
-          value="entirePlace"
-          place="kindOfSpace"
-          currentValue={place}
-          onChange={handleChange}
-        >
-          An entire place
-        </Radio>
-        <Radio
-          id="privateRoom"
-          value="privateRoom"
-          place="kindOfSpace"
-          currentValue={place}
-          onChange={handleChange}
-        >
-          A private room
-        </Radio>
+      <FlexRow>
+        <InputContainer>
+          <Radio
+            id="entirePlace"
+            value="entirePlace"
+            place="kindOfSpace"
+            currentValue={place}
+            onChange={handleChange}
+          >
+            An entire place
+          </Radio>
+          <Radio
+            id="privateRoom"
+            value="privateRoom"
+            place="kindOfSpace"
+            currentValue={place}
+            onChange={handleChange}
+          >
+            A private room
+          </Radio>
 
-        <Radio
-          id="sharedRoom"
-          value="sharedRoom"
-          place="kindOfSpace"
-          currentValue={place}
-          onChange={handleChange}
-        >
-          A shared room
-        </Radio>
-        <StickyButtons>
-          <PrimaryButton type="button" onClick={handleBack}>
-            Back
-          </PrimaryButton>
-          <Button type="button" onClick={handleNext}>
-            Next
-          </Button>
-        </StickyButtons>
-      </InputContainer>
+          <Radio
+            id="sharedRoom"
+            value="sharedRoom"
+            place="kindOfSpace"
+            currentValue={place}
+            onChange={handleChange}
+          >
+            A shared room
+          </Radio>
+        </InputContainer>
+
+        <div>
+          <StickyButtons>
+            <PrimaryButton type="button" onClick={handleBack}>
+              Back
+            </PrimaryButton>
+            <Button type="button" onClick={handleNext}>
+              Next
+            </Button>
+          </StickyButtons>
+        </div>
+      </FlexRow>
     </Flex>
   );
 };

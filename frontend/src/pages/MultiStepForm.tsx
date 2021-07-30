@@ -169,6 +169,6 @@ export const MultiStepForm: React.FC = () => {
     }
   };
 
-  // console.log(formData);
+  console.log(formData);
   return <Form>{switchSteps()}</Form>;
 };

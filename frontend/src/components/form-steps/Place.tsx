@@ -19,8 +19,8 @@ import house from "../../imgs/house.jpeg";
 import uniqueSpace from "../../imgs/unique-space.jpeg";
 
 type placeType = {
-  header: string;
   place: string;
+  header: string;
   handleChange: any;
   handleNext: any;
 };

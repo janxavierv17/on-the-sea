@@ -28,8 +28,8 @@ export const Description = styled.p`
 `;
 
 export const Input = styled.input`
-  appearance: none;
-  display: none;
+  // appearance: none;
+  // display: none;
 `;
 
 export const Image = styled.img`
@@ -40,36 +40,40 @@ export const Image = styled.img`
 `;
 
 export const RadioContainer = styled.div`
+  margin: 12px;
   position: relative;
-  padding: 12px 7px;
-  border: 1px solid #d3d3d3;
-  border-radius: 7px;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 12px;
+  padding: 24px 7px;
   font-size: 16px;
-  margin: 32px;
   height: 4.5em;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
-  @media (min-width: 1024px) {
-    padding: 12px;
-    margin: 24px;
+
+  input[type="radio"]:checked + label {
+    border: 3px solid red;
+    border-radius: 7px;
   }
 `;
 
 export const Label = styled.label<IProps>`
+  border: 1px solid #d3d3d3;
+  border-radius: 7px;
   display: ${(prop) => (prop.pageTwo ? "block" : "flex")};
   padding: ${(prop) => (prop.pageTwo ? "12px 0 12px 6px" : "0 0 0 12px")};
   flex-flow: column wrap;
   justify-content: center;
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 100%;
-  width: 100%;
   font-size: 14px;
-  font-weight: bold;
-  // z-index: 0;
+  font-weight: 6;
 `;
 
 export const MultiStepFormContainer = styled.div`
@@ -106,22 +110,27 @@ export const InputContainer = styled.div`
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   position: relative;
-
   @media (min-width: 768px) {
+    padding: 12px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    height: 100vh;
   }
 
   @media (min-width: 1024px) {
     display: flex;
     flex-direction: column;
+    height: 100vh;
+    padding: 64px;
   }
 `;
 
 export const StickyButtons = styled.div`
+  z-index: 2;
+  padding: 12px;
   background-color: white;
   border-top: 1px solid #d3d3d3;
   display: flex;
@@ -131,15 +140,17 @@ export const StickyButtons = styled.div`
 export const Button = styled.button`
   border-radius: 5px;
   background-color: #2d8cff;
-  width: 65px;
+  width: 75px;
   height: 65px;
   border: none;
   font-weight: bold;
   font-size: 16px;
   color: white;
+  text-align: center;
 `;
 
 export const PrimaryButton = styled(Button)`
+  text-align: center;
   background-color: white;
   border: 1px solid #2d8cff;
   color: #2d8cff;
@@ -220,11 +231,11 @@ export const GuestContainer = styled.div`
   display: flex;
   flex-flow: row wrap;
 `;
+
 export const GuestWidth = styled.div`
   padding: 24px 0;
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  justify-content: space-around;
 
   label {
     font-size: 18px;
@@ -240,22 +251,21 @@ export const GuestWidth = styled.div`
 `;
 
 export const PlaceDescriptionSpacing = styled.div`
-  width: 100%;
+  width: 90%;
   padding: 12px;
-  margin: 64px 12px 64px 12px;
 
   label {
     font-size: 18px;
   }
   input {
     margin-top: 12px;
-    width: 80%;
+    width: 100%;
     height: 100px;
     font-weight: bold;
     border: 1px solid #d3d3d3;
     resize: none;
     outline: none;
-    font-size: 16px;
+    font-size: 24px;
   }
 `;
 

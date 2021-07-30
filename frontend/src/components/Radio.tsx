@@ -42,13 +42,15 @@ export const Radio: React.FC<RadioTypes> = ({
             onChange={onChange}
           />
 
-          {place === "typeOfPlace" ? (
+          <Label htmlFor={value}>{children}</Label>
+
+          {/* {place === "typeOfPlace" ? (
             <Label htmlFor={value} pageTwo>
               {children}
             </Label>
           ) : (
             <Label htmlFor={value}>{children}</Label>
-          )}
+          )} */}
 
           {description ? <Description>{description}</Description> : null}
         </div>

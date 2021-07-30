@@ -2,6 +2,7 @@ import {
   InputContainer,
   Header,
   Flex,
+  FlexRow,
   PlaceDescriptionSpacing,
   CostStyling,
   StickyButtons,
@@ -27,43 +28,51 @@ export const PlaceDescription: React.FC<PlaceDescriptionTypes> = ({
   return (
     <Flex>
       <Header>{header}</Header>
-      <InputContainer>
-        <PlaceDescriptionSpacing>
-          <label htmlFor="title">Create your title</label>
-          <input type="text" id="title" onChange={handleChange} name="title" />
-        </PlaceDescriptionSpacing>
+      <FlexRow>
+        <InputContainer>
+          <PlaceDescriptionSpacing>
+            <label htmlFor="title">Create your title</label>
+            <input
+              type="text"
+              id="title"
+              onChange={handleChange}
+              name="title"
+            />
+          </PlaceDescriptionSpacing>
 
-        <PlaceDescriptionSpacing>
-          <label htmlFor="description">Create your description</label>
-          <input
-            type="text"
-            id="description"
-            onChange={handleChange}
-            name="description"
-          />
-        </PlaceDescriptionSpacing>
+          <PlaceDescriptionSpacing>
+            <label htmlFor="description">Create your description</label>
+            <input
+              type="text"
+              id="description"
+              onChange={handleChange}
+              name="description"
+            />
+          </PlaceDescriptionSpacing>
 
-        <CostStyling>
-          <label htmlFor="cost"> Cost per night</label>
-          <span>$</span>
-          <input
-            type="number"
-            id="cost"
-            name="cost"
-            value={formData.cost}
-            onChange={handleChange}
-          />
-        </CostStyling>
-
-        <StickyButtons>
-          <PrimaryButton type="button" onClick={handleBack}>
-            Back
-          </PrimaryButton>
-          <Button type="button" onClick={handleSubmit}>
-            Submit
-          </Button>
-        </StickyButtons>
-      </InputContainer>
+          <CostStyling>
+            <label htmlFor="cost"> Cost per night</label>
+            <span>$</span>
+            <input
+              type="number"
+              id="cost"
+              name="cost"
+              value={formData.cost}
+              onChange={handleChange}
+            />
+          </CostStyling>
+        </InputContainer>
+        <div>
+          <StickyButtons>
+            <PrimaryButton type="button" onClick={handleBack}>
+              Back
+            </PrimaryButton>
+            <Button type="button" onClick={handleSubmit}>
+              Submit
+            </Button>
+          </StickyButtons>
+        </div>
+      </FlexRow>
     </Flex>
   );
 };
