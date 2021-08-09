@@ -1,6 +1,13 @@
 import Place from "../model/place.mjs";
 import cloudinary from "cloudinary";
 
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API,
+  api_secret: process.env.CLOUD_SECRET,
+  secure: true,
+});
+
 export const getPlaces = async (request, response) => {
   // Get all places from our mongodb.
   const data = await Place.find({});

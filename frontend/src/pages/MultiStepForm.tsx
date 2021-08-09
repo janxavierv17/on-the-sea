@@ -9,7 +9,7 @@ import { Address } from "../components/form-steps/Address";
 import { Guests } from "../components/form-steps/Guests";
 import { Amenities } from "../components/form-steps/Amenities";
 import { PlaceDescription } from "../components/form-steps/PlaceDescription";
-
+import { UploadPhoto } from "../components/form-steps/UploadPhoto";
 // Styles
 import { Form } from "../components/form-steps/Form";
 
@@ -151,8 +151,12 @@ export const MultiStepForm: React.FC = () => {
             handleBack={handleBack}
           />
         );
-
       case 7:
+        return (
+          <UploadPhoto handleChange={handleChange} handleBack={handleBack} />
+        );
+
+      case 8:
         return (
           <PlaceDescription
             formData={formData}

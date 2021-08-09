@@ -2,11 +2,13 @@ import cors from "cors";
 import express from "express";
 import mongoose from "mongoose";
 import Places from "./routes/places.mjs";
+import env from "dotenv";
+env.config();
 const app = express();
 
 async function init() {
   await mongoose.connect(
-    "mongodb+srv://janxavierv17:jan123456@cluster0.19coz.mongodb.net/on-the-sea?retryWrites=true&w=majority",
+    `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.19coz.mongodb.net/on-the-sea?retryWrites=true&w=majority`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
