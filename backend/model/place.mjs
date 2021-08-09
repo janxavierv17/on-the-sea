@@ -34,7 +34,6 @@ const placeSchema = new Schema({
       coordinates: { lat: Number, lng: Number, required: false },
     },
   },
-  // Change the code in frontend to receive an array of strings.
   amenities: { type: [String], required: false },
   featuredImage: { type: String, required: false },
   images: { type: [String], required: false },

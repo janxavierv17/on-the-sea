@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@types/googlemaps": "^3.43.3",
-    "@types/react-router-dom": "^5.1.8"
+    "@types/react-router-dom": "^5.1.8",
+    "dotenv": "^10.0.0"
   }
 }

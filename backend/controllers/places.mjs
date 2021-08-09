@@ -1,5 +1,5 @@
-import express from "express";
 import Place from "../model/place.mjs";
+import cloudinary from "cloudinary";
 
 export const getPlaces = async (request, response) => {
   // Get all places from our mongodb.
@@ -32,18 +32,10 @@ export const createPlace = async (request, response) => {
       beds,
       bedRooms,
       bathRooms,
-      isPool,
-      isHotTub,
-      isPatio,
-      isBbqGrill,
-      isFirePit,
-      isPoolTable,
-      isIndoorFirePlace,
-      isOutdoorDiningArea,
-      isExerciseEquipment,
       title,
       description,
       costs,
+      amenities,
     } = request.body;
 
     // Create a new instance of a model
@@ -66,23 +58,13 @@ export const createPlace = async (request, response) => {
           postCode,
           country,
         },
-        amenities: {
-          isPool,
-          isHotTub,
-          isPatio,
-          isBbqGrill,
-          isFirePit,
-          isPoolTable,
-          isIndoorFirePlace,
-          isOutdoorDiningArea,
-          isExerciseEquipment,
-        },
       },
+      amenities,
     });
 
     // Save that model
     const data = await placeData.save();
-
+    console.log("Received data:", data);
     // Once model has successfuly saved. send a 200 response
     response.status(200).send(data);
   } catch (error) {
