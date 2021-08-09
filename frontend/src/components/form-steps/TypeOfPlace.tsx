@@ -36,7 +36,7 @@ export const TypeOfPlace: React.FC<typeOfPlace> = ({
             id="rental-unit"
             value="rental-unit"
             place="typeOfPlace"
-            description="A rented palce within a multi-unit residential building or complex"
+            description="A rented place within a multi-unit residential building or complex"
             currentValue={place}
             onChange={handleChange}
           >

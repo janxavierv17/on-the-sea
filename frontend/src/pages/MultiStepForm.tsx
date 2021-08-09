@@ -33,7 +33,7 @@ type StateTypes = {
 };
 
 export const MultiStepForm: React.FC = () => {
-  const [step, setSteps] = useState(1);
+  const [step, setSteps] = useState(6);
   const [formData, setFormData] = useState<StateTypes>({
     place: "",
     typeOfPlace: "",
@@ -107,7 +107,7 @@ export const MultiStepForm: React.FC = () => {
       case 2:
         return (
           <TypeOfPlace
-            place={formData.place}
+            place={formData.typeOfPlace}
             header="Which of these best describes your place?"
             handleChange={handleChange}
             handleNext={handleNext}
@@ -117,7 +117,7 @@ export const MultiStepForm: React.FC = () => {
       case 3:
         return (
           <KindOfSpace
-            place={formData.place}
+            place={formData.kindOfSpace}
             header="What kind of space will guest have?"
             handleChange={handleChange}
             handleNext={handleNext}
@@ -168,7 +168,6 @@ export const MultiStepForm: React.FC = () => {
         break;
     }
   };
-
-  console.log(formData);
+  console.log(formData.amenities);
   return <Form>{switchSteps()}</Form>;
 };

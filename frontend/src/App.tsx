@@ -5,7 +5,7 @@ export const App: React.FC = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/create-place">
+        <Route path="/place">
           <MultiStepForm />
         </Route>
       </Switch>

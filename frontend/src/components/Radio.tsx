@@ -34,23 +34,21 @@ export const Radio: React.FC<RadioTypes> = ({
       <RadioContainer>
         <div>
           <Input
-            type="radio"
             id={id}
+            type="radio"
             name={place}
             value={value}
             checked={value === currentValue}
             onChange={onChange}
           />
 
-          <Label htmlFor={value}>{children}</Label>
-
-          {/* {place === "typeOfPlace" ? (
+          {place === "typeOfPlace" ? (
             <Label htmlFor={value} pageTwo>
               {children}
             </Label>
           ) : (
             <Label htmlFor={value}>{children}</Label>
-          )} */}
+          )}
 
           {description ? <Description>{description}</Description> : null}
         </div>

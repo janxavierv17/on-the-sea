@@ -28,8 +28,8 @@ export const Description = styled.p`
 `;
 
 export const Input = styled.input`
-  // appearance: none;
-  // display: none;
+  appearance: none;
+  display: none;
 `;
 
 export const Image = styled.img`
@@ -55,7 +55,7 @@ export const RadioContainer = styled.div`
   align-items: center;
 
   input[type="radio"]:checked + label {
-    border: 3px solid red;
+    border: 3px solid #2d8cff;
     border-radius: 7px;
   }
 `;
@@ -64,7 +64,7 @@ export const Label = styled.label<IProps>`
   border: 1px solid #d3d3d3;
   border-radius: 7px;
   display: ${(prop) => (prop.pageTwo ? "block" : "flex")};
-  padding: ${(prop) => (prop.pageTwo ? "12px 0 12px 6px" : "0 0 0 12px")};
+  padding: ${(prop) => (prop.pageTwo ? "12px 0 0 3px" : "0 0 0 12px")};
   flex-flow: column wrap;
   justify-content: center;
   position: absolute;
@@ -110,13 +110,14 @@ export const InputContainer = styled.div`
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   position: relative;
+
   @media (min-width: 768px) {
     padding: 12px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     height: 100vh;
   }
 
@@ -307,6 +308,26 @@ export const Checkbox = styled.div`
   align-items: center;
   text-align: center;
   border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  width: 125px;
+  height: 125px;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: bold;
+
+  input[type="checkbox"]:checked + div {
+    height: 100px;
+    width: 50px;
+    border: 3px solid red;
+  }
+`;
+export const LabelAmenities = styled.label`
+  margin: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 3px solid #d3d3d3;
   border-radius: 5px;
   width: 125px;
   height: 125px;
