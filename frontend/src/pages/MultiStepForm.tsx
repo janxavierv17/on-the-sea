@@ -55,7 +55,6 @@ export const MultiStepForm: React.FC = () => {
 
   const handleNext = () => {
     setSteps((prevState) => prevState + 1);
-    console.log(step);
   };
 
   const handleBack = () => {
@@ -125,6 +124,7 @@ export const MultiStepForm: React.FC = () => {
       case 4:
         return (
           <Address
+            place={formData}
             header="Where is your place located?"
             handleChange={handleChange}
             handleNext={handleNext}

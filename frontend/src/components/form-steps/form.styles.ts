@@ -148,6 +148,10 @@ export const Button = styled.button`
   font-size: 16px;
   color: white;
   text-align: center;
+
+  :disabled {
+    background-color: #d3d3d3;
+  }
 `;
 
 export const PrimaryButton = styled(Button)`

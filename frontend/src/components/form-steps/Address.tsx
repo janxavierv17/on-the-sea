@@ -12,6 +12,7 @@ import {
 } from "./form.styles";
 
 type Props = {
+  place: {};
   header: string;
   handleChange: any;
   handleNext: any;
@@ -19,6 +20,7 @@ type Props = {
 };
 
 export const Address: React.FC<Props> = ({
+  place,
   header,
   handleChange,
   handleNext,

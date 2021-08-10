@@ -66,7 +66,11 @@ export const KindOfSpace: React.FC<kindOfSpace> = ({
             <PrimaryButton type="button" onClick={handleBack}>
               Back
             </PrimaryButton>
-            <Button type="button" onClick={handleNext}>
+            <Button
+              type="button"
+              onClick={handleNext}
+              disabled={place ? false : true}
+            >
               Next
             </Button>
           </StickyButtons>

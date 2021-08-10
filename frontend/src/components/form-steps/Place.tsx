@@ -93,7 +93,11 @@ export const Place: React.FC<placeType> = ({
         <div>
           <StickyButtons>
             <PrimaryButton type="button">Cancel</PrimaryButton>
-            <Button type="button" onClick={handleNext}>
+            <Button
+              type="button"
+              onClick={handleNext}
+              disabled={place ? false : true}
+            >
               Next
             </Button>
           </StickyButtons>
