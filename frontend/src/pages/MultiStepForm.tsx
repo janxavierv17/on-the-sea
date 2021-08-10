@@ -33,7 +33,7 @@ type StateTypes = {
 };
 
 export const MultiStepForm: React.FC = () => {
-  const [step, setSteps] = useState(1);
+  const [step, setSteps] = useState(7);
   const [formData, setFormData] = useState<StateTypes>({
     place: "",
     typeOfPlace: "",
@@ -153,7 +153,11 @@ export const MultiStepForm: React.FC = () => {
         );
       case 7:
         return (
-          <UploadPhoto handleChange={handleChange} handleBack={handleBack} />
+          <UploadPhoto
+            header="Let's add some photos of your place."
+            handleBack={handleBack}
+            handleNext={handleNext}
+          />
         );
 
       case 8:

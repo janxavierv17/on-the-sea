@@ -5,13 +5,14 @@ import {
   createPlace,
   updatePlace,
   deletePlace,
+  uploadphoto,
 } from "../controllers/places.mjs";
 
 // Places routes
 
-// Edit route names later ...
 router.get("/api/v1/places", getPlaces);
 router.post("/api/v1/places", createPlace);
+router.post("/upload", uploadPhoto);
 router.put("/api/v1/places/:id", updatePlace);
 router.delete("/api/v1/places/:id", deletePlace);
 

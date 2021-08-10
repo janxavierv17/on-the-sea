@@ -1,6 +1,8 @@
 import Place from "../model/place.mjs";
 import cloudinary from "cloudinary";
-
+import Formdiable from "formidable";
+import util from "util";
+// Cloudinary configuration
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.CLOUD_API,
@@ -155,4 +157,19 @@ export const deletePlace = async (request, response) => {
 
     console.log("Something went wrong.", error);
   }
+};
+
+export const uploadPhoto = (request, response) => {
+  const form = new Formdiable();
+
+  form.parse(request, (error, fields, files) => {
+    cloudinary.v2.uploader.upload(files.upload.path, (result) => {
+      console.log("Result: ", result);
+      if (result.public_id) {
+        response.writeHead(200, { "content-type": "text/plain" });
+        response.write("received uploads:\n\n");
+        response.end(util.inspect({ fields: fields, files: files }));
+      }
+    });
+  });
 };

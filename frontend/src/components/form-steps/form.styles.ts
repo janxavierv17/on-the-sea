@@ -339,3 +339,24 @@ export const LabelAmenities = styled.label`
   line-height: 18px;
   font-weight: bold;
 `;
+
+export const PhotoInput = styled.label`
+  display: flex;
+  border: 3px dotted #d3d3d3;
+  height: 250px;
+  width: 250px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  input[type="file"] {
+    appearance: none;
+    display: none;
+  }
+`;
+
+export const PhotoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
