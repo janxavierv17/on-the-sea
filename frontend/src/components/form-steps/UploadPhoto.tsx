@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState, useEffect } from "react";
 import axios from "axios";
 import {
   InputContainer,
@@ -27,12 +27,15 @@ export const UploadPhoto: React.FC<IProps> = ({
   const [previewSource, setPreviewSource] = useState("");
   const [selectedFile, setSelectedFile] = useState("");
 
+  useEffect(() => {
+    uploadImage(previewSource);
+  }, [previewSource]);
+
   const handleUpload = (event: ChangeEvent<HTMLInputElement>) => {
     const { target } = event;
     if (target.files) {
       const file = target.files[0];
       previewFile(file);
-      uploadImage(previewSource);
       if (!previewSource) return;
     } else {
       return;
@@ -44,17 +47,18 @@ export const UploadPhoto: React.FC<IProps> = ({
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       const result = reader.result as string;
+      console.log("Result: ", result);
       setPreviewSource(result);
     };
   };
 
   const uploadImage = (base64EncodedImage: string) => {
+    console.log("Base64:", base64EncodedImage);
     try {
       axios
-        .post(
-          "http://localhost:5000/api/v1/places",
-          JSON.stringify({ data: base64EncodedImage })
-        )
+        .post("http://localhost:5000/api/v1/upload", {
+          data: base64EncodedImage,
+        })
         .then((response) => console.log("Submitted data: ", response))
         .then((error) => console.log(error));
     } catch (error) {
