@@ -27,6 +27,7 @@ export const UploadPhoto: React.FC<IProps> = ({
   const [previewSource, setPreviewSource] = useState("");
   const [selectedFile, setSelectedFile] = useState("");
 
+  // To do ...
   useEffect(() => {
     uploadImage(previewSource);
   }, [previewSource]);
