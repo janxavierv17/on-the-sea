@@ -22,8 +22,8 @@ async function init() {
     console.log("We're connected tot our db cluster");
   });
 
-  app.use(express.urlencoded({ extended: true }));
-  app.use(express.json());
+  app.use(express.json({ limit: "50mb" }));
+  app.use(express.urlencoded({ limit: "50mb", extended: true }));
   app.use(cors());
 
   // Routes

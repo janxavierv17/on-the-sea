@@ -10,7 +10,6 @@ import {
   Input,
   AmenitiesContainer,
   Checkbox,
-  LabelAmenities,
 } from "../form-steps/form.styles";
 
 type AmenitiesTypes = {

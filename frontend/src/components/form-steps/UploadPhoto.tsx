@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from "react";
-// import axios from "axios";
+import axios from "axios";
 import {
   InputContainer,
   Header,
@@ -23,13 +23,43 @@ export const UploadPhoto: React.FC<IProps> = ({
   handleBack,
   handleNext,
 }) => {
-  const [file, setFile] = useState<File>();
-  const handleChange = (event: React.FormEvent) => {
-    const files = (event.target as HTMLInputElement).files;
-    if (files && files.length > 0) {
-      setFile(files);
+  const [fileInputState, setFileInputState] = useState("");
+  const [previewSource, setPreviewSource] = useState("");
+  const [selectedFile, setSelectedFile] = useState("");
+
+  const handleUpload = (event: ChangeEvent<HTMLInputElement>) => {
+    const { target } = event;
+    if (target.files) {
+      const file = target.files[0];
+      previewFile(file);
+      uploadImage(previewSource);
+      if (!previewSource) return;
+    } else {
+      return;
     }
-    console.log("Files: ", file);
+  };
+
+  const previewFile = (file: any) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      const result = reader.result as string;
+      setPreviewSource(result);
+    };
+  };
+
+  const uploadImage = (base64EncodedImage: string) => {
+    try {
+      axios
+        .post(
+          "http://localhost:5000/api/v1/places",
+          JSON.stringify({ data: base64EncodedImage })
+        )
+        .then((response) => console.log("Submitted data: ", response))
+        .then((error) => console.log(error));
+    } catch (error) {
+      console.log("Something went wrong: ", error);
+    }
   };
 
   return (
@@ -44,11 +74,19 @@ export const UploadPhoto: React.FC<IProps> = ({
                 id="photograph"
                 type="file"
                 name="photos"
+                value={fileInputState}
                 multiple
-                onChange={handleChange}
+                onChange={handleUpload}
               />
             </PhotoInput>
           </PhotoContainer>
+          {previewSource && (
+            <img
+              src={previewSource}
+              alt="Your chosen place."
+              style={{ height: "300px" }}
+            />
+          )}
         </InputContainer>
         <div>
           <StickyButtons>
