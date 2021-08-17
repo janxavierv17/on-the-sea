@@ -1,6 +1,10 @@
 import Place from "../model/place.mjs";
 import cloudinary from "cloudinary";
-import util from "util";
+
+// Weird how my dotenv is not global
+import dotenv from "dotenv";
+dotenv.config();
+
 // Cloudinary configuration
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -158,11 +162,14 @@ export const deletePlace = async (request, response) => {
   }
 };
 
-export const uploadPhoto = (request, response) => {
+export const uploadPhoto = async (request, response) => {
   try {
-    const fileString = request.body.data;
-    console.log("EncodedFile:", fileString);
+    const fileStr = request.body.data;
+    const upload = await cloudinary.v2.uploader.upload(fileStr, {
+      upload_preset: "photos",
+    });
+    console.log("Properties", upload);
   } catch (error) {
-    console.log("Something went wrong with the server: ", error);
+    console.log("Cloudinary uploads - ", error);
   }
 };
