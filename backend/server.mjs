@@ -1,8 +1,10 @@
 import cors from "cors";
+import morgan from "morgan";
+import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import Places from "./routes/places.mjs";
-import dotenv from "dotenv";
+import AuthUser from "./routes/authUser.mjs";
 dotenv.config();
 
 const app = express();
@@ -24,10 +26,15 @@ db.once("open", function () {
 
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
-app.use(cors());
+app.use(morgan("dev"));
+
+if (process.env.NODE_DEV) {
+  app.use(cors({ origin: process.env.NODE_HOST }));
+}
 
 // Routes
 app.use(Places);
+app.use(AuthUser);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
