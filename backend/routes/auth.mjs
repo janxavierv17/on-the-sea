@@ -1,4 +1,4 @@
-import { signUp, users } from "../controllers/authUser.mjs";
+import { signUp, users } from "../controllers/auth.mjs";
 
 // Validator
 import { userSignupValidator } from "../validator/auth.mjs";

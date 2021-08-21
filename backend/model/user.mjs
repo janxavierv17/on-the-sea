@@ -19,7 +19,7 @@ const userSchema = new Schema(
       required: true,
     },
     // The strength of our hash.
-    salt: { type: string },
+    salt: { type: String },
     role: {
       type: String,
       default: "subscriber",
@@ -58,10 +58,13 @@ userSchema.methods = {
     }
 
     try {
-      return createHmac("sha256", secret).update(password).digest("hex");
+      return crypto
+        .createHmac("sha1", this.salt)
+        .update(password)
+        .digest("hex");
     } catch (error) {
-      console.log("Something went wrong.");
-      return;
+      console.log("Something went wrong.", error);
+      return "";
     }
   },
 

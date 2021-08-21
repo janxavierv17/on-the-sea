@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import Places from "./routes/places.mjs";
-import AuthUser from "./routes/authUser.mjs";
+import AuthUser from "./routes/auth.mjs";
 dotenv.config();
 
 const app = express();
@@ -21,7 +21,7 @@ mongoose.connect(
 
 const db = mongoose.connection;
 db.once("open", function () {
-  console.log("We're connected tot our db cluster");
+  console.log("We're connected to our DB cluster");
 });
 
 app.use(express.json({ limit: "50mb" }));

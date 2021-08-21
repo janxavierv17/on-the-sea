@@ -6,7 +6,6 @@ export const userSignupValidator = [
   check("lastName").not().isEmpty().withMessage("Your last name is required."),
   check("email").isEmail().withMessage("An email is required."),
   check("password")
-    .not()
-    .isEmpty()
+    .isLength(6)
     .withMessage("A password with minimum of 6 characters is required."),
 ];
