@@ -14,40 +14,82 @@ export const users = (request, response) => {
   });
 };
 
-export const signUp = async (request, response) => {
-  // console.log('REQ BODY ON SIGNUP', req.body);
-  const { name, lastName, email, password } = request.body;
-  await User.findOne({ email }).exec((err, user) => {
-    if (user) {
-      return response.status(400).json({
-        error:
-          "This email is already taken. Please use a different email address.",
+export const signIn = async (request, response) => {
+  try {
+    // Check if the user details exists in our database.
+    const { email, password } = request.body;
+    await User.findOne({ email }).exec((error, user) => {
+      if (error || !user) {
+        console.log("Details does not exist.");
+        return response.status(400).json({
+          message: "This user email does not exist. Please register.",
+        });
+      }
+      // Authenticate this user
+      // Authenticate is a method that can be found in the User Model Schema.
+      // Check the entered password and compare it our our database
+
+      if (!user.authenticate(password)) {
+        return response.status(400).json({
+          message: "This email and password does not match.",
+        });
+      }
+      // Generate a token with an expiry date. The JWT token is used for authentication
+      // to allow access to our protected routes.
+      const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+        expiresIn: "7d",
       });
-    }
+      const { _id, name, lastName, email, role } = user;
+      return response.json({
+        token,
+        user: { _id, name, lastName, email, role },
+      });
+    });
+  } catch (error) {
+    console.log("Something went wrong with Sign In:", error);
+  }
+};
 
-    const token = jwt.sign(
-      { name, lastName, email, password },
-      process.env.JWT_ACTIVATE,
-      { expiresIn: "10m" }
-    );
+// This is the first step on saving user's account
+export const signUp = async (request, response) => {
+  // Encode our user that just registered using JWT.
+  // If the email does not exist proceed, else stop.
+  // Send a verification email. The verification email will take our user to our frontend page.
+  // That frontend page will grab the encoded JWT. We then make a request to our backend and save the user's information.
+  try {
+    const { name, lastName, email, password } = request.body;
+    await User.findOne({ email }).exec((err, user) => {
+      if (user) {
+        return response.status(400).json({
+          message:
+            "This email is already taken. Please use a different email address.",
+        });
+      }
 
-    const sendEmail = {
-      from: process.env.EMAIL_FROM,
-      to: process.env.EMAIL_TO,
-      subject: `On the sea`,
-      html: `
-      <h1>Let's verify your account. </h1>
-      <p>${process.env.NODE_HOST}/authenticate/activate/${token}</p>
-      <hr/>
-      <p>Your link is active for 10 minutes. After that, you will need to resend the verification email.</p>
-      `,
-    };
+      const token = jwt.sign(
+        { name, lastName, email, password },
+        process.env.JWT_ACTIVATE,
+        { expiresIn: "10m" }
+      );
 
-    sendGridMail.send(sendEmail).then((sent) => {
-      console.log("Send Grid: ", sent);
-      return response
-        .json({
-          message: `Email has been sent to ${email}. Follow the instructions to activate your acccount.`,
+      const sendEmail = {
+        from: process.env.EMAIL_FROM,
+        to: process.env.EMAIL_TO,
+        subject: `On the sea`,
+        html: `
+        <h1>Let's verify your account. </h1>
+        <p>${process.env.NODE_HOST}/authenticate/activate/${token}</p>
+        <hr/>
+        <p>Your link is active for 10 minutes. After that, you will need to resend the verification email.</p>
+        `,
+      };
+
+      sendGridMail
+        .send(sendEmail)
+        .then((sent) => {
+          return response.json({
+            message: `Email has been sent to ${email}. Follow the instructions to activate your acccount.`,
+          });
         })
         .catch((error) => {
           console.log("Something went wrong with Send Grid", error);
@@ -56,23 +98,44 @@ export const signUp = async (request, response) => {
           });
         });
     });
-  });
-
-  // let newUser = new User({ name, lastName, email, password });
-  // await newUser.save((err, success) => {
-  //   if (err) {
-  //     console.log("Something went wrong with signing up.", err);
-  //     return response.status(400).json({
-  //       error: err,
-  //     });
-  //   }
-  //   response.json({
-  //     message: "Signup success! Please signin",
-  //   });
-  // });
+  } catch (error) {
+    console.log("Signup Error:", error);
+  }
 };
 
-// Encode our user that just registered using JWT.
-// If the email does not exist proceed, else stop.
-// Send a verification email. The verification email will take our user to our frontend page.
-// That frontend page will grab the encoded JWT. We then make a request to our backend and save the user's information.
+// This is the second step to saving the user's account
+export const accountActivation = (request, response) => {
+  const { token } = request.body;
+  if (token) {
+    jwt.verify(token, process.env.JWT_ACTIVATE, function (error, decodedToken) {
+      if (error) {
+        console.log("Account activation error:", error);
+        return response.status(401).json({
+          error: "Activation link has expired. Please sign up again.",
+        });
+      }
+
+      const { name, lastName, email, password } = jwt.decode(token);
+      const user = new User({ name, lastName, email, password });
+
+      user.save((error, user) => {
+        console.log("The User:", user);
+        if (error) {
+          console.log("Saving user in activation link had an error: ", error);
+          return response.status(401).json({
+            message:
+              "Saving user in activation link had an error. Try again later. ",
+          });
+        }
+
+        return response.json({
+          message: "Register successful.",
+        });
+      });
+    });
+  } else {
+    return response.json({
+      message: "Token does not exist. Try again later.",
+    });
+  }
+};

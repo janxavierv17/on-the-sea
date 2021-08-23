@@ -48,7 +48,7 @@ userSchema
 // methods
 userSchema.methods = {
   authenticate: function (plainText) {
-    // if the plain psasword matches the saved hashed_password then return true;
+    // returns a true or false.
     return this.encryptPassword(plainText) === this.hashed_password;
   },
 

@@ -1,5 +1,12 @@
 import { check } from "express-validator";
 
+export const userSigninValidator = [
+  check("email").isEmail().withMessage("An email is required."),
+  check("password")
+    .isLength(6)
+    .withMessage("A password with minimum of 6 characters is required."),
+];
+
 // Run this checker in index.mjs
 export const userSignupValidator = [
   check("name").not().isEmpty().withMessage("A name is required."),
