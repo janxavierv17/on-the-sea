@@ -33,7 +33,7 @@ type StateTypes = {
 };
 
 export const MultiStepForm: React.FC = () => {
-  const [step, setSteps] = useState(7);
+  const [step, setSteps] = useState(1);
   const [formData, setFormData] = useState<StateTypes>({
     place: "",
     typeOfPlace: "",
