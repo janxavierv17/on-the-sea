@@ -1,4 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
+import italy from "../imgs/italy.png";
+import { Flex } from "../pages/pages.styes";
 import { Signup } from "../components/auth/Signup";
 
 export const Login = () => {
@@ -24,13 +26,16 @@ export const Login = () => {
   };
 
   return (
-    <Signup
-      firstName={signUpData.firstName}
-      lastName={signUpData.lastName}
-      email={signUpData.email}
-      password={signUpData.password}
-      handleChange={handleChange}
-      handleSubmit={handleSubmit}
-    />
+    <Flex>
+      <img src={italy} alt="Italy" />
+      <Signup
+        firstName={signUpData.firstName}
+        lastName={signUpData.lastName}
+        email={signUpData.email}
+        password={signUpData.password}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+      />
+    </Flex>
   );
 };
