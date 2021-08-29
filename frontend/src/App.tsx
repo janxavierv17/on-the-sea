@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { MultiStepForm } from "./pages/MultiStepForm";
-import { Login } from "./pages/Login";
+import { Login } from "./pages/auth";
 export const App: React.FC = () => {
   return (
     <Router>

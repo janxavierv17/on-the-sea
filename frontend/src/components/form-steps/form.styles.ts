@@ -167,7 +167,7 @@ export const Header = styled.h1`
   padding: 72px 24px;
   margin: 0;
   font-weight: bold;
-  line-hieght: 58px;
+  line-height: 58px;
   @media (min-width: 768px) {
     margin: auto;
     font-size: 48px;

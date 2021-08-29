@@ -56,8 +56,9 @@ export const signUp = async (request, response) => {
   // If the email does not exist proceed, else stop.
   // Send a verification email. The verification email will take our user to our frontend page.
   // That frontend page will grab the encoded JWT. We then make a request to our backend and save the user's information.
+
   try {
-    const { name, lastName, email, password } = request.body;
+    const { firstName, lastName, email, password } = request.body;
     await User.findOne({ email }).exec((err, user) => {
       if (user) {
         return response.status(400).json({
@@ -67,7 +68,7 @@ export const signUp = async (request, response) => {
       }
 
       const token = jwt.sign(
-        { name, lastName, email, password },
+        { firstName, lastName, email, password },
         process.env.JWT_ACTIVATE,
         { expiresIn: "10m" }
       );
