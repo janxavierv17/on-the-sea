@@ -23,11 +23,9 @@ export const UploadPhoto: React.FC<IProps> = ({
   handleBack,
   handleNext,
 }) => {
-  const [fileInputState, setFileInputState] = useState("");
+  const [fileInputState] = useState("");
   const [previewSource, setPreviewSource] = useState("");
-  // const [selectedFile, setSelectedFile] = useState("");
 
-  // To do ...
   useEffect(() => {
     uploadImage(previewSource);
   }, [previewSource]);
@@ -56,17 +54,9 @@ export const UploadPhoto: React.FC<IProps> = ({
   const uploadImage = (base64EncodedImage: string) => {
     try {
       axios
-        .post(
-          "http://localhost:5000/api/v1/upload",
-          // {
-          //   headers: {
-          //     "Content-Type": "application/json;charset=UTF-8",
-          //   },
-          // },
-          {
-            data: base64EncodedImage,
-          }
-        )
+        .post("http://localhost:5000/api/v1/upload", {
+          data: base64EncodedImage,
+        })
         .then((response) => console.log("Submitted data: ", response))
         .then((error) => console.log(error));
     } catch (error) {

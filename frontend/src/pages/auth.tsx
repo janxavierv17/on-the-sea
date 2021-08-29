@@ -3,14 +3,18 @@ import axios from "axios";
 import italy from "../imgs/italy.png";
 import { Flex } from "./pages.styes";
 import { Signup } from "../components/auth/Signup";
-
+import { useHistory } from "react-router-dom";
 export const Login = () => {
+  let history = useHistory();
+
   const [signUpData, setSignUpData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
   });
+
+  const [signUpError, setSignUpError] = useState([]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -26,11 +30,14 @@ export const Login = () => {
     event.preventDefault();
     axios
       .post("http://localhost:5000/api/v1/signup", signUpData)
-      .then((data) => {
-        console.log("Submitted data", data);
+      .then((response) => {
+        console.log("Submitted data", response.data.message);
       })
-      .then((error) => {
-        console.log("Error:", error);
+      .catch((error) => {
+        if (error.response.data) {
+          console.log("error", error.response.data);
+          setSignUpError(error.response.data);
+        }
       });
 
     setSignUpData({
@@ -39,6 +46,8 @@ export const Login = () => {
       email: "",
       password: "",
     });
+
+    history.push("/place");
   };
 
   return (
@@ -51,6 +60,7 @@ export const Login = () => {
         password={signUpData.password}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
+        errors={signUpError}
       />
     </Flex>
   );

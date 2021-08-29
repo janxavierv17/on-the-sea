@@ -14,6 +14,7 @@ type Props = {
   password: string;
   handleChange: any;
   handleSubmit: any;
+  errors: string[];
 };
 export const Signup: React.FC<Props> = ({
   firstName,
@@ -22,6 +23,7 @@ export const Signup: React.FC<Props> = ({
   password,
   handleChange,
   handleSubmit,
+  errors,
 }) => {
   return (
     <Container>
@@ -32,7 +34,7 @@ export const Signup: React.FC<Props> = ({
           </p>
           <h1>Create an account.</h1>
         </Header>
-
+        {errors.length}
         <form method="POST" onSubmit={handleSubmit}>
           <FormContainer>
             <div>

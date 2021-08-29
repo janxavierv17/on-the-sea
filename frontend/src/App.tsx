@@ -6,7 +6,7 @@ export const App: React.FC = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/">
+        <Route path="/" exact>
           <Login />
         </Route>
         <Route path="/place">
