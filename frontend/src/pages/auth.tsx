@@ -3,9 +3,9 @@ import axios from "axios";
 import italy from "../imgs/italy.png";
 import { Flex } from "./pages.styes";
 import { Signup } from "../components/auth/Signup";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 export const Login = () => {
-  let history = useHistory();
+  // let history = useHistory();
 
   const [signUpData, setSignUpData] = useState({
     firstName: "",
@@ -36,7 +36,7 @@ export const Login = () => {
       .catch((error) => {
         if (error.response.data) {
           console.log("error", error.response.data);
-          setSignUpError(error.response.data);
+          setSignUpError(error.response.data.errors);
         }
       });
 
@@ -47,12 +47,20 @@ export const Login = () => {
       password: "",
     });
 
-    history.push("/place");
+    // history.push("/place");
   };
 
+  const errors = signUpError.map((error) => (
+    // console.log("Loop on Errors:", error)
+    <ul>
+      <li>{error}</li>
+    </ul>
+  ));
   return (
     <Flex>
       <img src={italy} alt="Italy" />
+      {errors}
+
       <Signup
         firstName={signUpData.firstName}
         lastName={signUpData.lastName}

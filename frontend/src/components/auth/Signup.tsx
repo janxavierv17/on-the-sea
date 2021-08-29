@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   FormButton,
   Container,
@@ -14,8 +15,9 @@ type Props = {
   password: string;
   handleChange: any;
   handleSubmit: any;
-  errors: string[];
+  errors: any;
 };
+
 export const Signup: React.FC<Props> = ({
   firstName,
   lastName,
@@ -34,7 +36,6 @@ export const Signup: React.FC<Props> = ({
           </p>
           <h1>Create an account.</h1>
         </Header>
-        {errors.length}
         <form method="POST" onSubmit={handleSubmit}>
           <FormContainer>
             <div>
