@@ -1,6 +1,7 @@
 import { Button } from "../form-steps/form.styles";
 import styled from "styled-components";
 
+// Login bold color.
 export const Sea = styled.span`
   color: #5fa8d3;
   font-weight: bold;
