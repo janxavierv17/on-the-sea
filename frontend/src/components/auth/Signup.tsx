@@ -16,7 +16,7 @@ type Props = {
   handleSubmit: any;
   errors: any;
 };
-
+// TODO: Use the link sent from SendGrid.
 export const Signup: React.FC<Props> = ({
   firstName,
   lastName,
