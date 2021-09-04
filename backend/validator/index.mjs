@@ -7,8 +7,7 @@ export const runValidation = (request, response, next) => {
     return errors.array()[key].msg;
   });
 
-  console.log(array);
-  // if we have errors response with a status 422 and a json.
+  // if we have errors give a response status of 422 and a json.
   if (!errors.isEmpty()) {
     return response.status(422).json({
       errors: array,

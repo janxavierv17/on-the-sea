@@ -4,6 +4,7 @@ import {
   Main,
   Header,
   FormContainer,
+  Errors,
 } from "./auth.styles";
 import { Sea } from "./auth.styles";
 
@@ -15,9 +16,10 @@ type Props = {
   handleChange: any;
   handleSubmit: any;
   errors: any;
+  loading: boolean;
 };
 // TODO: Use the link sent from SendGrid.
-export const Signup: React.FC<Props> = ({
+export const SignUp: React.FC<Props> = ({
   firstName,
   lastName,
   email,
@@ -25,7 +27,11 @@ export const Signup: React.FC<Props> = ({
   handleChange,
   handleSubmit,
   errors,
+  loading,
 }) => {
+  const signUpErrors = errors.map((error: string[], index: number) => {
+    return <li key={index}>{error}</li>;
+  });
   return (
     <Container>
       <Main>
@@ -35,6 +41,7 @@ export const Signup: React.FC<Props> = ({
           </p>
           <h1>Create an account.</h1>
         </Header>
+        <Errors>{signUpErrors}</Errors>
         <form method="POST" onSubmit={handleSubmit}>
           <FormContainer>
             <div>
@@ -93,7 +100,9 @@ export const Signup: React.FC<Props> = ({
               </label>
             </div>
 
-            <FormButton type="submit">Create Account</FormButton>
+            <FormButton type="submit" disabled={loading ? true : false}>
+              Create Account
+            </FormButton>
           </FormContainer>
         </form>
       </Main>

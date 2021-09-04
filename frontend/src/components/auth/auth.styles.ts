@@ -12,6 +12,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   background-color: #f7b146;
+  padding-bottom: 34px;
 `;
 
 export const Main = styled.main`
@@ -135,4 +136,14 @@ export const FormButton = styled(Button)`
   height: 40px;
   margin-top: 30px;
   background-color: #5fa8d3;
+`;
+
+export const Errors = styled.ul`
+  color: red;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  @media (max-width: 768px) {
+    font-size: 10px;
+  }
 `;
