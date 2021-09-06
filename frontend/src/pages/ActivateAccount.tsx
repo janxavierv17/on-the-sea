@@ -18,9 +18,11 @@ interface MatchParams extends RouteComponentProps<Props> {
   lastName: string;
 }
 
+/**
+ * TODO:
+ * Store data from token to local storage as cookie.
+ */
 export const ActivateAccount: React.FC<MatchParams> = ({ match }) => {
-  const [signUpError, setSignUpError] = useState();
-  const [details, setDetails] = useState({});
   const [activate, setActivate] = useState({
     name: "",
     token: "",
@@ -28,21 +30,6 @@ export const ActivateAccount: React.FC<MatchParams> = ({ match }) => {
   });
 
   const { name, token, show } = activate;
-  const handleActivation = () => {
-    console.log("Token from function:", token);
-    axios
-      .post("http://localhost:5000/api/v1/account-activation", { token })
-      .then((response) => {
-        console.log("Submitted data", response.data.message);
-        // Save the response (user, token) to local storage as a cookie
-      })
-      .catch((error) => {
-        if (error.response.data) {
-          console.log("error", error.response.data);
-          setSignUpError(error.response.data.errors);
-        }
-      });
-  };
 
   useEffect(() => {
     let token = match.params.token;
@@ -53,8 +40,22 @@ export const ActivateAccount: React.FC<MatchParams> = ({ match }) => {
       show: false,
     });
 
+    function handleActivation() {
+      console.log("Token from function:", token);
+      axios
+        .post("http://localhost:5000/api/v1/account-activation", { token })
+        .then((response) => {
+          console.log("Submitted data", response.data.message);
+          // Save the response (user, token) to local storage as a cookie
+        })
+        .catch((error) => {
+          if (error.response.data) {
+            console.log("error", error.response.data);
+          }
+        });
+    }
     handleActivation();
-  }, [name, token, show]);
+  }, [name, token, show, match.params.token]);
   const activateAccount = () => (
     <div>
       <h1>{name}, your account has been activated.</h1>
