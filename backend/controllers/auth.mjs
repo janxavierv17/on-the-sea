@@ -107,6 +107,7 @@ export const signUp = async (request, response) => {
 // This is the second step to saving the user's account
 export const accountActivation = (request, response) => {
   const { token } = request.body;
+  console.log("Activate Account: ", token);
   if (token) {
     jwt.verify(token, process.env.JWT_ACTIVATE, function (error, decodedToken) {
       if (error) {
@@ -116,11 +117,12 @@ export const accountActivation = (request, response) => {
         });
       }
 
-      const { name, lastName, email, password } = jwt.decode(token);
-      const user = new User({ name, lastName, email, password });
+      const { firstName, lastName, email, password } = jwt.decode(token);
+      console.log("Details:", firstName, lastName, email, password);
+      const userDetails = new User({ firstName, lastName, email, password });
 
-      user.save((error, user) => {
-        console.log("The User:", user);
+      userDetails.save((error, user) => {
+        // console.log("The User:", user);
         if (error) {
           console.log("Saving user in activation link had an error: ", error);
           return response.status(401).json({

@@ -31,6 +31,7 @@ export const Login = () => {
       .post("http://localhost:5000/api/v1/signin", signUpData)
       .then((response) => {
         console.log("Submitted data", response.data.message);
+        // Save the response (user, token) to local storage as a cookie
         setLoading(false);
       })
       .catch((error) => {

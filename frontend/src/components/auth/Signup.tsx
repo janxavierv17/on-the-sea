@@ -8,7 +8,6 @@ import {
 } from "./auth.styles";
 import { Sea } from "./auth.styles";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 type Props = {
   firstName: string;
   lastName: string;
