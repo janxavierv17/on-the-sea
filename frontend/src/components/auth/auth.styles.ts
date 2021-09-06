@@ -121,6 +121,10 @@ export const FormContainer = styled.div`
   flex-direction: column;
   width: 100%;
 
+  p > a {
+    text-decoration: none;
+  }
+
   @media (max-width: 768px) {
     padding: 12px;
 
