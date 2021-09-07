@@ -21,6 +21,7 @@ interface MatchParams extends RouteComponentProps<Props> {
 /**
  * TODO:
  * Store data from token to local storage as cookie.
+ * Use the stored cookie.
  */
 export const ActivateAccount: React.FC<MatchParams> = ({ match }) => {
   const [activate, setActivate] = useState({
