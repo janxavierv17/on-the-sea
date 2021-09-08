@@ -6,7 +6,7 @@ import { SignIn } from "../components/auth/SignIn";
 import { authenticate } from "../components/auth/helpers";
 
 export const Login = () => {
-  const [signUpError, setSignUpError] = useState([]);
+  const [signUpError] = useState([]);
   const [loading, setLoading] = useState(true);
   const [signUpData, setSignUpData] = useState({
     email: "",

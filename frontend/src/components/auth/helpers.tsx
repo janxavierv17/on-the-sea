@@ -56,3 +56,11 @@ export const isAuth = () => {
     }
   }
 };
+
+// TODO
+// Make our signout method work.
+export const signOut = (next: () => void) => {
+  removeCookie("token");
+  removeLocalStorage("user");
+  next();
+};
