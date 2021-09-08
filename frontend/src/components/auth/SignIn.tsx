@@ -7,7 +7,8 @@ import {
   Errors,
 } from "./auth.styles";
 import { Sea } from "./auth.styles";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { isAuth } from "./helpers";
 type Props = {
   email: string;
   password: string;
@@ -36,7 +37,7 @@ export const SignIn: React.FC<Props> = ({
             Sign in to <Sea>On The Sea</Sea>
           </p>
         </Header>
-
+        {isAuth() ? <Redirect to="/" /> : null}
         <Errors>{signUpErrors}</Errors>
         <form method="POST" onSubmit={handleSubmit}>
           <FormContainer>

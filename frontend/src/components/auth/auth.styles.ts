@@ -142,9 +142,9 @@ export const FormButton = styled(Button)`
   background-color: #5fa8d3;
 `;
 
-export const Errors = styled.ul`
+export const Errors = styled.p`
   color: red;
-  text-align: left;
+  text-align: center;
   padding: 0;
   margin: 0;
   @media (max-width: 768px) {

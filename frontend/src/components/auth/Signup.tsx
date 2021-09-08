@@ -29,10 +29,6 @@ export const SignUp: React.FC<Props> = ({
   errors,
   loading,
 }) => {
-  const signUpErrors = errors.map((error: string[], index: number) => {
-    return <li key={index}>{error}</li>;
-  });
-
   return (
     <Container>
       <Main>
@@ -43,7 +39,7 @@ export const SignUp: React.FC<Props> = ({
           <h1>Create an account.</h1>
         </Header>
 
-        <Errors>{signUpErrors}</Errors>
+        {errors ? <Errors>{errors}</Errors> : null}
         <form method="POST" onSubmit={handleSubmit}>
           <FormContainer>
             <div>

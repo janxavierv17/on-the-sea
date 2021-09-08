@@ -3,6 +3,8 @@ import axios from "axios";
 import italy from "../imgs/italy.png";
 import { Flex } from "./pages.styes";
 import { SignIn } from "../components/auth/SignIn";
+import { authenticate } from "../components/auth/helpers";
+
 export const Login = () => {
   const [signUpError, setSignUpError] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -30,15 +32,15 @@ export const Login = () => {
     axios
       .post("http://localhost:5000/api/v1/signin", signUpData)
       .then((response) => {
-        console.log("Submitted data", response.data.message);
-        // Save the response (user, token) to local storage as a cookie
-        setLoading(false);
+        // console.log("Submitted data", response.data);
+        // Save the response (user, token) to local storage as a cookie and run next, the call back function
+        authenticate(response, () => {
+          setLoading(false);
+        });
       })
       .catch((error) => {
-        if (error.response.data) {
-          console.log("error", error.response.data);
-          setSignUpError(error.response.data.errors);
-        }
+        console.log("Login error:", error);
+        // setSignUpError(error.response.data.errors);
       });
 
     setSignUpData({

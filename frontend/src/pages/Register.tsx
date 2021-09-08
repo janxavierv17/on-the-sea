@@ -37,7 +37,7 @@ export const Register = () => {
       })
       .catch((error) => {
         if (error.response.data) {
-          console.log("error", error.response.data);
+          console.log("from catch error:", error.response.data);
           setSignUpError(error.response.data.errors);
         }
       });
