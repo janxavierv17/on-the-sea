@@ -32,6 +32,7 @@ export const createPlace = async (request, response) => {
     // I need to get the data from the request body
     // destructure the data from the body.
     const {
+      userID,
       place,
       typeOfPlace,
       kindOfSpace,
@@ -52,6 +53,7 @@ export const createPlace = async (request, response) => {
 
     // Create a new instance of a model
     const placeData = new Place({
+      userID,
       place,
       title,
       beds,

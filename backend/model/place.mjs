@@ -3,10 +3,13 @@ const { Schema } = mongoose;
 
 // Schema
 const placeSchema = new Schema({
+  userID: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   place: { type: String, required: false },
   title: { type: String, required: false },
-
-  // Change the frontend code to receive the same as amenities
   beds: { type: String, required: false },
   guests: { type: String, required: false },
   costs: { type: String, required: false },

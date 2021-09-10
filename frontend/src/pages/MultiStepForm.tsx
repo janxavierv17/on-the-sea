@@ -1,5 +1,7 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, useEffect } from "react";
 import axios from "axios";
+// Helpers Local Storage
+import { isAuth } from "../components/auth/helpers";
 
 // Components
 import { Place } from "../components/form-steps/Place";
@@ -14,6 +16,7 @@ import { UploadPhoto } from "../components/form-steps/UploadPhoto";
 import { Form } from "../components/form-steps/Form";
 
 type StateTypes = {
+  userID: string;
   place: string;
   typeOfPlace: string;
   kindOfSpace: string;
@@ -22,19 +25,21 @@ type StateTypes = {
   state: string;
   postCode: string;
   country: string;
-  guests: number;
-  beds: number;
-  bedRooms: number;
-  bathRooms: number;
+  guests: string;
+  beds: string;
+  bedRooms: string;
+  bathRooms: string;
   amenities: string[];
   title: string;
   description: string;
-  costs: number;
+  costs: string;
 };
 
 export const MultiStepForm: React.FC = () => {
   const [step, setSteps] = useState(1);
+  const [userDetails, setUserDetails] = useState({} as any);
   const [formData, setFormData] = useState<StateTypes>({
+    userID: "",
     place: "",
     typeOfPlace: "",
     kindOfSpace: "",
@@ -43,15 +48,22 @@ export const MultiStepForm: React.FC = () => {
     state: "",
     postCode: "",
     country: "",
-    guests: 0,
-    beds: 0,
-    bedRooms: 0,
-    bathRooms: 0,
+    guests: "",
+    beds: "",
+    bedRooms: "",
+    bathRooms: "",
     amenities: [],
     title: "",
     description: "",
-    costs: 0,
+    costs: "",
   });
+
+  useEffect(() => {
+    const loggedUser = isAuth();
+    setUserDetails(loggedUser);
+  }, [formData.userID]);
+
+  console.log(userDetails._id);
 
   const handleNext = () => {
     setSteps((prevState) => prevState + 1);
@@ -76,6 +88,7 @@ export const MultiStepForm: React.FC = () => {
       setFormData((prevState) => {
         return {
           ...prevState,
+          userID: userDetails._id,
           [event.target.name]: event.target.value,
         };
       });
@@ -90,6 +103,7 @@ export const MultiStepForm: React.FC = () => {
       .then((error) => console.log(error));
   };
 
+  console.log();
   const switchSteps = () => {
     switch (step) {
       case 1:

@@ -22,7 +22,8 @@ const userSchema = new Schema(
     salt: { type: String },
     role: {
       type: String,
-      default: "subscriber",
+      default: "Guest",
+      enum: ["Creator", "Guest"],
     },
     // Generate a token for password resets to verify if the user exists.
     resetPasswordLink: {

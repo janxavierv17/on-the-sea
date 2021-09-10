@@ -1,5 +1,5 @@
 import { validationResult } from "express-validator";
-
+import User from "../model/user.mjs";
 export const runValidation = (request, response, next) => {
   const errors = validationResult(request);
 
@@ -10,4 +10,18 @@ export const runValidation = (request, response, next) => {
     });
   }
   next();
+};
+
+export const isUserCreator = async (request, response, next) => {
+  console.log("isUserCreator Function fired.");
+  try {
+    const user = await User.findById(request.user._id).exec();
+    if (!user.role.includes("Creator")) {
+      return response.sendStatus(403);
+    } else {
+      next();
+    }
+  } catch (error) {
+    console.log("isCreator Error: ", error);
+  }
 };

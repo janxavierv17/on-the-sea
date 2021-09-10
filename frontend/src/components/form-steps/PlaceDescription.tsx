@@ -57,7 +57,6 @@ export const PlaceDescription: React.FC<PlaceDescriptionTypes> = ({
               type="number"
               id="cost"
               name="cost"
-              value={formData.cost}
               onChange={handleChange}
             />
           </CostStyling>
