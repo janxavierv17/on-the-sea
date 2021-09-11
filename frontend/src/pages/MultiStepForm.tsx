@@ -12,6 +12,7 @@ import { Guests } from "../components/form-steps/Guests";
 import { Amenities } from "../components/form-steps/Amenities";
 import { PlaceDescription } from "../components/form-steps/PlaceDescription";
 import { UploadPhoto } from "../components/form-steps/UploadPhoto";
+import { Preview } from "../components/form-steps/Preview";
 // Styles
 import { Form } from "../components/form-steps/Form";
 
@@ -36,7 +37,7 @@ type StateTypes = {
 };
 
 export const MultiStepForm: React.FC = () => {
-  const [step, setSteps] = useState(1);
+  const [step, setSteps] = useState(9);
   const [userDetails, setUserDetails] = useState({} as any);
   const [formData, setFormData] = useState<StateTypes>({
     userID: "",
@@ -184,6 +185,9 @@ export const MultiStepForm: React.FC = () => {
             handleBack={handleBack}
           />
         );
+
+      case 9:
+        return <Preview />;
       default:
         break;
     }
