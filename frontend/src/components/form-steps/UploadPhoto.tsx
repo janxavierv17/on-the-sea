@@ -14,28 +14,52 @@ import {
 
 type IProps = {
   header: string;
+  previewImage: any;
+  setPreviewImage: any;
+  setUploadedPhoto: any;
+  setFormData: any;
+  formData: any;
   handleBack: () => void;
   handleNext: () => void;
 };
 
 export const UploadPhoto: React.FC<IProps> = ({
   header,
+  previewImage,
+  setPreviewImage,
+  setUploadedPhoto,
+  formData,
+  setFormData,
   handleBack,
   handleNext,
 }) => {
   const [fileInputState] = useState("");
-  const [previewSource, setPreviewSource] = useState("");
 
   useEffect(() => {
-    uploadImage(previewSource);
-  }, [previewSource]);
+    const uploadImage = (base64EncodedImage: string) => {
+      try {
+        axios
+          .post("http://localhost:5000/api/v1/upload", {
+            data: base64EncodedImage,
+          })
+          .then((response) => {
+            console.log(response);
+            // let uploadedImages = response.data.url;
+            // setFormData({ ...formData, images: uploadedImages });
+          });
+      } catch (error) {
+        console.log("Something went wrong: ", error);
+      }
+    };
+    uploadImage(previewImage);
+  }, [previewImage]);
 
   const handleUpload = (event: ChangeEvent<HTMLInputElement>) => {
     const { target } = event;
     if (target.files) {
       const file = target.files[0];
       previewFile(file);
-      if (!previewSource) return;
+      if (!previewImage) return;
     } else {
       return;
     }
@@ -46,22 +70,9 @@ export const UploadPhoto: React.FC<IProps> = ({
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       const result = reader.result as string;
-      console.log("Result: ", result);
-      setPreviewSource(result);
+      console.log("filereader result:", result);
+      setPreviewImage(result);
     };
-  };
-
-  const uploadImage = (base64EncodedImage: string) => {
-    try {
-      axios
-        .post("http://localhost:5000/api/v1/upload", {
-          data: base64EncodedImage,
-        })
-        .then((response) => console.log("Submitted data: ", response))
-        .then((error) => console.log(error));
-    } catch (error) {
-      console.log("Something went wrong: ", error);
-    }
   };
 
   return (
@@ -77,8 +88,8 @@ export const UploadPhoto: React.FC<IProps> = ({
                 type="file"
                 name="photos"
                 value={fileInputState}
-                multiple
                 onChange={handleUpload}
+                multiple
               />
             </PhotoInput>
           </PhotoContainer>

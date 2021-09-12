@@ -13,8 +13,8 @@ import {
 type GuestTypes = {
   header: string;
   handleChange: any;
-  handleNext: any;
-  handleBack: any;
+  handleNext: () => void;
+  handleBack: () => void;
 };
 
 export const Guests: React.FC<GuestTypes> = ({

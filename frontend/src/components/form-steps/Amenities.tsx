@@ -15,8 +15,8 @@ import {
 type AmenitiesTypes = {
   header: string;
   handleChange: any;
-  handleNext: any;
-  handleBack: any;
+  handleNext: () => void;
+  handleBack: () => void;
 };
 
 export const Amenities: React.FC<AmenitiesTypes> = ({

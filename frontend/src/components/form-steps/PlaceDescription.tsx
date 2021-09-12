@@ -12,18 +12,16 @@ import {
 
 type PlaceDescriptionTypes = {
   header: string;
-  formData: any;
   handleChange: any;
-  handleBack: any;
-  handleSubmit: any;
+  handleBack: () => void;
+  handleNext: () => void;
 };
 
 export const PlaceDescription: React.FC<PlaceDescriptionTypes> = ({
   header,
-  formData,
   handleChange,
   handleBack,
-  handleSubmit,
+  handleNext,
 }) => {
   return (
     <Flex>
@@ -66,7 +64,7 @@ export const PlaceDescription: React.FC<PlaceDescriptionTypes> = ({
             <PrimaryButton type="button" onClick={handleBack}>
               Back
             </PrimaryButton>
-            <Button type="button" onClick={handleSubmit}>
+            <Button type="button" onClick={handleNext}>
               Submit
             </Button>
           </StickyButtons>

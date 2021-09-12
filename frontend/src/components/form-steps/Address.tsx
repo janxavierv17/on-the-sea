@@ -12,15 +12,13 @@ import {
 } from "./form.styles";
 
 type Props = {
-  place: {};
   header: string;
   handleChange: any;
-  handleNext: any;
-  handleBack: any;
+  handleNext: () => void;
+  handleBack: () => void;
 };
 
 export const Address: React.FC<Props> = ({
-  place,
   header,
   handleChange,
   handleNext,

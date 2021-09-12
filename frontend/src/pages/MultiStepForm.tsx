@@ -13,6 +13,7 @@ import { Amenities } from "../components/form-steps/Amenities";
 import { PlaceDescription } from "../components/form-steps/PlaceDescription";
 import { UploadPhoto } from "../components/form-steps/UploadPhoto";
 import { Preview } from "../components/form-steps/Preview";
+
 // Styles
 import { Form } from "../components/form-steps/Form";
 
@@ -28,6 +29,7 @@ type StateTypes = {
   country: string;
   guests: string;
   beds: string;
+  images: string[];
   bedRooms: string;
   bathRooms: string;
   amenities: string[];
@@ -37,8 +39,11 @@ type StateTypes = {
 };
 
 export const MultiStepForm: React.FC = () => {
-  const [step, setSteps] = useState(9);
+  const [step, setSteps] = useState(7);
   const [userDetails, setUserDetails] = useState({} as any);
+  const [previewImage, setPreviewImage] = useState("");
+  const [uploadedPhoto, setUploadedPhoto] = useState("");
+
   const [formData, setFormData] = useState<StateTypes>({
     userID: "",
     place: "",
@@ -51,6 +56,7 @@ export const MultiStepForm: React.FC = () => {
     country: "",
     guests: "",
     beds: "",
+    images: [],
     bedRooms: "",
     bathRooms: "",
     amenities: [],
@@ -139,7 +145,6 @@ export const MultiStepForm: React.FC = () => {
       case 4:
         return (
           <Address
-            place={formData}
             header="Where is your place located?"
             handleChange={handleChange}
             handleNext={handleNext}
@@ -170,6 +175,11 @@ export const MultiStepForm: React.FC = () => {
         return (
           <UploadPhoto
             header="Let's add some photos of your place."
+            previewImage={previewImage}
+            setPreviewImage={setPreviewImage}
+            setUploadedPhoto={setUploadedPhoto}
+            setFormData={setFormData}
+            formData={formData}
             handleBack={handleBack}
             handleNext={handleNext}
           />
@@ -178,20 +188,28 @@ export const MultiStepForm: React.FC = () => {
       case 8:
         return (
           <PlaceDescription
-            formData={formData}
             header="A little more details for your place."
             handleChange={handleChange}
-            handleSubmit={handleSubmit}
+            handleNext={handleNext}
             handleBack={handleBack}
           />
         );
 
       case 9:
-        return <Preview />;
+        return (
+          <Preview
+            userDetails={userDetails}
+            place={formData}
+            uploadedPhoto={uploadedPhoto}
+            header="Check out your listing!"
+            handleSubmit={handleSubmit}
+            handleBack={handleBack}
+          />
+        );
       default:
         break;
     }
   };
-  console.log(formData);
+  console.log("Form Data", formData);
   return <Form>{switchSteps()}</Form>;
 };

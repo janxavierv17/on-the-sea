@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 // Components
 import { Radio } from "../Radio";
 
@@ -11,6 +12,7 @@ import {
   PrimaryButton,
   Button,
 } from "../form-steps/form.styles";
+
 // Images
 import apartment from "../../imgs/apartment.jpeg";
 import bedAndBreakfast from "../../imgs/bed-and-breakfast.jpeg";
@@ -22,7 +24,7 @@ type placeType = {
   place: string;
   header: string;
   handleChange: any;
-  handleNext: any;
+  handleNext: () => void;
 };
 
 export const Place: React.FC<placeType> = ({

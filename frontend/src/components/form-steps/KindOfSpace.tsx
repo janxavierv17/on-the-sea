@@ -16,8 +16,8 @@ type kindOfSpace = {
   place: string;
   header: string;
   handleChange: any;
-  handleNext: any;
-  handleBack: any;
+  handleNext: () => void;
+  handleBack: () => void;
 };
 export const KindOfSpace: React.FC<kindOfSpace> = ({
   place,

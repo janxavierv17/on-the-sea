@@ -39,10 +39,10 @@ export const signIn = async (request, response) => {
       const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
         expiresIn: "7d",
       });
-      const { _id, name, lastName, email, role } = user;
+      const { _id, firstName, lastName, email, role } = user;
       return response.json({
         token,
-        user: { _id, name, lastName, email, role },
+        user: { _id, firstName, lastName, email, role },
       });
     });
   } catch (error) {
@@ -122,7 +122,6 @@ export const accountActivation = (request, response) => {
       const userDetails = new User({ firstName, lastName, email, password });
 
       userDetails.save((error, user) => {
-        // console.log("The User:", user);
         if (error) {
           console.log("Saving user in activation link had an error: ", error);
           return response.status(401).json({

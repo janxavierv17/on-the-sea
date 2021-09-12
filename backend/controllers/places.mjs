@@ -164,13 +164,18 @@ export const deletePlace = async (request, response) => {
   }
 };
 
+/**
+ * Check the link to upload multiple images
+ * https://stackoverflow.com/questions/62142940/how-to-upload-multiple-images-to-cloudinary
+ * */
 export const uploadPhoto = async (request, response) => {
   try {
     const fileStr = request.body.data;
     const upload = await cloudinary.v2.uploader.upload(fileStr, {
       upload_preset: "photos",
     });
-    console.log("Properties", upload);
+    console.log("Properties", upload.url);
+    return response.status(200).send(upload);
   } catch (error) {
     console.log("Cloudinary uploads - ", error);
   }

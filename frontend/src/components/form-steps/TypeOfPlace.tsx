@@ -16,8 +16,8 @@ type typeOfPlace = {
   place: string;
   header: string;
   handleChange: any;
-  handleNext: any;
-  handleBack: any;
+  handleNext: () => void;
+  handleBack: () => void;
 };
 
 export const TypeOfPlace: React.FC<typeOfPlace> = ({
