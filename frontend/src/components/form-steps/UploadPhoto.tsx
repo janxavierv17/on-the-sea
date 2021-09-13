@@ -34,57 +34,42 @@ export const UploadPhoto: React.FC<IProps> = ({
   handleNext,
 }) => {
   const [fileInputState] = useState("");
-
-  useEffect(() => {
-    const uploadImage = (base64EncodedImage: string) => {
-      try {
-        axios
-          .post("http://localhost:5000/api/v1/upload", {
-            data: base64EncodedImage,
-          })
-          .then((response) => {
-            console.log(response);
-            // let uploadedImages = response.data.url;
-            // setFormData({ ...formData, images: uploadedImages });
-          });
-      } catch (error) {
-        console.log("Something went wrong: ", error);
-      }
-    };
-    uploadImage(previewImage);
-  }, [previewImage]);
+  const [uploadedFile, setUploadedFile] = useState();
+  useEffect(() => {}, [uploadedFile]);
 
   const handleUpload = (event: ChangeEvent<HTMLInputElement>) => {
-    const { target } = event;
-    if (target.files) {
-      const file = target.files[0];
-      previewFile(file);
-      if (!previewImage) return;
-    } else {
-      return;
+    const data = new FormData() as any;
+    if (event.target.files !== null) {
+      data.append("file", event!.target!.files[0]!);
     }
+    setUploadedFile(data);
   };
 
-  const previewFile = (file: any) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      const result = reader.result as string;
-      console.log("filereader result:", result);
-      setPreviewImage(result);
-    };
+  const handleSubmit = (event: ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    console.log("Sending files to backend.");
+    axios
+      .post("http://localhost:5000/api/v1/upload", uploadedFile, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then((response) => {
+        console.log("Response to frontend:", response);
+      })
+      .catch((error) => {
+        console.log("Axios error uploading photo:", error);
+      });
   };
-
+  console.log("Chosen files -", uploadedFile);
   return (
     <Flex>
       <Header>{header}</Header>
       <FlexRow>
         <InputContainer>
           <PhotoContainer>
-            <PhotoInput htmlFor="photograph">
+            <PhotoInput htmlFor="photos">
               Choose and add at least 1 photograph.
               <input
-                id="photograph"
+                id="photos"
                 type="file"
                 name="photos"
                 value={fileInputState}

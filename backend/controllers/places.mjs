@@ -1,12 +1,13 @@
 import Place from "../model/place.mjs";
-import cloudinary from "cloudinary";
+// import { uploads } from "../helper/cloudinary.mjs";
+import fs from "fs";
 
-// Weird how my dotenv is not global
+import cloudinary from "cloudinary";
 import dotenv from "dotenv";
 dotenv.config();
 
 // Cloudinary configuration
-cloudinary.config({
+cloudinary.v2.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.CLOUD_API,
   api_secret: process.env.CLOUD_SECRET,
@@ -164,19 +165,24 @@ export const deletePlace = async (request, response) => {
   }
 };
 
-/**
- * Check the link to upload multiple images
- * https://stackoverflow.com/questions/62142940/how-to-upload-multiple-images-to-cloudinary
- * */
 export const uploadPhoto = async (request, response) => {
-  try {
-    const fileStr = request.body.data;
-    const upload = await cloudinary.v2.uploader.upload(fileStr, {
-      upload_preset: "photos",
-    });
-    console.log("Properties", upload.url);
-    return response.status(200).send(upload);
-  } catch (error) {
-    console.log("Cloudinary uploads - ", error);
+  console.log("UploadPhoto route:", request.files);
+  const uploader = async (path) => await uploads(path, "Images");
+  if (request.files) {
+    const urls = [];
+    const files = request.files;
+    for (const file of files) {
+      const { path } = file;
+      const newPath = await uploader(path);
+      urls.push(newPath);
+      fs.unlinkSync(path);
+    }
+    response
+      .status(200)
+      .json({ message: "Uploaded Images successfully.", data: urls });
+  } else {
+    response
+      .status(405)
+      .json({ message: "Something went wrong with uploading your images." });
   }
 };
