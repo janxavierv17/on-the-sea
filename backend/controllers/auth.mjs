@@ -1,11 +1,19 @@
 import User from "../model/user.mjs";
+import dotenv from "dotenv";
+dotenv.config();
+import cloudinary from "cloudinary";
 
 // Sending email
 import jwt from "jsonwebtoken";
 import sendGridMail from "@sendgrid/mail";
-// -------
-import express from "express";
-sendGridMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+// Cloudinary configuration
+cloudinary.v2.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API,
+  api_secret: process.env.CLOUD_SECRET,
+  secure: true,
+});
 
 export const users = (request, response) => {
   console.log("Users routee", request.body);

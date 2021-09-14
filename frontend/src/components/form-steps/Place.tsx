@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 // Components
 import { Radio } from "../Radio";
 

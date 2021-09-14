@@ -1,7 +1,6 @@
+import { format } from "morgan";
 import Place from "../model/place.mjs";
-// import { uploads } from "../helper/cloudinary.mjs";
-import fs from "fs";
-
+import formidable from "formidable";
 import cloudinary from "cloudinary";
 import dotenv from "dotenv";
 dotenv.config();
@@ -166,23 +165,27 @@ export const deletePlace = async (request, response) => {
 };
 
 export const uploadPhoto = async (request, response) => {
-  console.log("UploadPhoto route:", request.files);
-  const uploader = async (path) => await uploads(path, "Images");
-  if (request.files) {
-    const urls = [];
-    const files = request.files;
-    for (const file of files) {
-      const { path } = file;
-      const newPath = await uploader(path);
-      urls.push(newPath);
-      fs.unlinkSync(path);
+  const cloudinaryURLS = [];
+  const cloudinaryPublicID = [];
+  for (let i = 0; i < request.files.photos.length; i++) {
+    try {
+      const result = await cloudinary.v2.uploader.upload(
+        request.files.photos[i].path,
+        {
+          folder: "onthesea",
+          public_id: request.files.photos[i].name,
+        }
+      );
+      console.log("RESULT", result);
+      cloudinaryURLS.push(result.url);
+      cloudinaryPublicID.push(result.public_id);
+    } catch (error) {
+      console.log("Uploading photos had an error.", error);
     }
-    response
-      .status(200)
-      .json({ message: "Uploaded Images successfully.", data: urls });
-  } else {
-    response
-      .status(405)
-      .json({ message: "Something went wrong with uploading your images." });
   }
+
+  response.json({
+    url: cloudinaryURLS,
+    public_id: cloudinaryPublicID,
+  });
 };

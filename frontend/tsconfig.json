@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    // changed from es5 to es6 due to uploadPhoto new Form() error
+    // Use compiler option '--downlevelIteration' to allow iterating of iterators.
+    "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "types": ["googlemaps"],
     "allowJs": true,

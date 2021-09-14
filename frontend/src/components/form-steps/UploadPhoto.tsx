@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState, useEffect } from "react";
+import React, { ChangeEvent, useState } from "react";
 import axios from "axios";
 import {
   InputContainer,
@@ -35,43 +35,38 @@ export const UploadPhoto: React.FC<IProps> = ({
 }) => {
   const [fileInputState] = useState("");
   const [uploadedFile, setUploadedFile] = useState();
-  useEffect(() => {}, [uploadedFile]);
 
-  const handleUpload = (event: ChangeEvent<HTMLInputElement>) => {
-    const data = new FormData() as any;
-    if (event.target.files !== null) {
-      data.append("file", event!.target!.files[0]!);
+  const handleUpload = async (event: ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files as unknown as string;
+    const formData = new FormData();
+    for (let i = 0; i < files.length; i++) {
+      formData.append("photos", files[i]);
     }
-    setUploadedFile(data);
+    console.log("formData - ", [...formData]);
+    try {
+      const data = await axios.post(
+        "http://localhost:5000/api/v1/upload",
+        formData
+      );
+      console.log("Response from cloudinary:", data);
+    } catch (error) {
+      console.log("Error", error);
+    }
   };
 
-  const handleSubmit = (event: ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    console.log("Sending files to backend.");
-    axios
-      .post("http://localhost:5000/api/v1/upload", uploadedFile, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-      .then((response) => {
-        console.log("Response to frontend:", response);
-      })
-      .catch((error) => {
-        console.log("Axios error uploading photo:", error);
-      });
-  };
-  console.log("Chosen files -", uploadedFile);
   return (
     <Flex>
       <Header>{header}</Header>
       <FlexRow>
         <InputContainer>
           <PhotoContainer>
-            <PhotoInput htmlFor="photos">
+            <PhotoInput htmlFor="photographs">
               Choose and add at least 1 photograph.
               <input
-                id="photos"
+                id="photographs"
                 type="file"
                 name="photos"
+                accept="images/*"
                 value={fileInputState}
                 onChange={handleUpload}
                 multiple
