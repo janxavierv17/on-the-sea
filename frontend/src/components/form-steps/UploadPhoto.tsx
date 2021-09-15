@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState, useEffect } from "react";
 import axios from "axios";
 import {
   InputContainer,
@@ -13,47 +13,40 @@ import {
 } from "./form.styles";
 
 type IProps = {
+  place: any;
   header: string;
-  previewImage: any;
-  setPreviewImage: any;
-  setUploadedPhoto: any;
   setFormData: any;
-  formData: any;
   handleBack: () => void;
   handleNext: () => void;
 };
 
 export const UploadPhoto: React.FC<IProps> = ({
+  place,
   header,
-  previewImage,
-  setPreviewImage,
-  setUploadedPhoto,
-  formData,
   setFormData,
   handleBack,
   handleNext,
 }) => {
   const [fileInputState] = useState("");
-  const [uploadedFile, setUploadedFile] = useState();
-
+  useEffect(() => {}, [place.images]);
   const handleUpload = async (event: ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files as unknown as string;
     const formData = new FormData();
     for (let i = 0; i < files.length; i++) {
       formData.append("photos", files[i]);
     }
-    console.log("formData - ", [...formData]);
     try {
       const data = await axios.post(
         "http://localhost:5000/api/v1/upload",
         formData
       );
-      console.log("Response from cloudinary:", data);
+      setFormData((prevState: any) => {
+        return { ...prevState, images: data.data.url };
+      });
     } catch (error) {
-      console.log("Error", error);
+      console.log("Something went wrong with handleUpload function", error);
     }
   };
-
   return (
     <Flex>
       <Header>{header}</Header>
@@ -79,7 +72,12 @@ export const UploadPhoto: React.FC<IProps> = ({
             <PrimaryButton type="button" onClick={handleBack}>
               Back
             </PrimaryButton>
-            <Button onClick={handleNext}>Next</Button>
+            <Button
+              onClick={handleNext}
+              disabled={place.images.length > 0 ? false : true}
+            >
+              Next
+            </Button>
           </StickyButtons>
         </div>
       </FlexRow>

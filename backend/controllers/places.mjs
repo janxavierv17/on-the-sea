@@ -49,6 +49,7 @@ export const createPlace = async (request, response) => {
       description,
       costs,
       amenities,
+      images,
     } = request.body;
 
     // Create a new instance of a model
@@ -74,6 +75,7 @@ export const createPlace = async (request, response) => {
         },
       },
       amenities,
+      images,
     });
 
     // Save that model
@@ -128,9 +130,7 @@ export const updatePlace = async (request, response) => {
       location,
       createdDate,
     });
-
     console.log(place);
-
     response.status(200).send({ message: "Update successful." });
   } catch (error) {
     console.log("Something went wrong.", error);
@@ -183,7 +183,6 @@ export const uploadPhoto = async (request, response) => {
       console.log("Uploading photos had an error.", error);
     }
   }
-
   response.json({
     url: cloudinaryURLS,
     public_id: cloudinaryPublicID,

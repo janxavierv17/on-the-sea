@@ -11,6 +11,7 @@ import {
 } from "./form.styles";
 
 type PlaceDescriptionTypes = {
+  place: any;
   header: string;
   handleChange: any;
   handleBack: () => void;
@@ -18,6 +19,7 @@ type PlaceDescriptionTypes = {
 };
 
 export const PlaceDescription: React.FC<PlaceDescriptionTypes> = ({
+  place,
   header,
   handleChange,
   handleBack,
@@ -49,12 +51,12 @@ export const PlaceDescription: React.FC<PlaceDescriptionTypes> = ({
           </PlaceDescriptionSpacing>
 
           <CostStyling>
-            <label htmlFor="cost"> Cost per night</label>
+            <label htmlFor="costs"> Cost per night</label>
             <span>$</span>
             <input
               type="number"
-              id="cost"
-              name="cost"
+              id="costs"
+              name="costs"
               onChange={handleChange}
             />
           </CostStyling>
@@ -64,8 +66,14 @@ export const PlaceDescription: React.FC<PlaceDescriptionTypes> = ({
             <PrimaryButton type="button" onClick={handleBack}>
               Back
             </PrimaryButton>
-            <Button type="button" onClick={handleNext}>
-              Submit
+            <Button
+              type="button"
+              onClick={handleNext}
+              disabled={
+                place.title && place.description && place.costs ? false : true
+              }
+            >
+              Next
             </Button>
           </StickyButtons>
         </div>

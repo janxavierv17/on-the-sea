@@ -7,9 +7,7 @@ type FormTypes = {
 export const Form: React.FC<FormTypes> = ({ children }) => {
   return (
     <MultiStepFormContainer>
-      <form method="POST" encType="multipart/form-data">
-        {children}
-      </form>
+      <form method="POST">{children}</form>
     </MultiStepFormContainer>
   );
 };

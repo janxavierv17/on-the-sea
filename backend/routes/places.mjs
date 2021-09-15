@@ -1,5 +1,6 @@
 import express from "express";
 import formidable from "express-formidable";
+
 const router = express.Router();
 import {
   getPlaces,
@@ -16,7 +17,7 @@ router.put("/api/v1/places/:id", updatePlace);
 router.delete("/api/v1/places/:id", deletePlace);
 router.post(
   "/api/v1/upload",
-  formidable({ maxFileSize: 5 * 1024 * 1024 }),
+  formidable({ maxFileSize: 5 * 1024 * 1024, multiples: true }),
   uploadPhoto
 );
 

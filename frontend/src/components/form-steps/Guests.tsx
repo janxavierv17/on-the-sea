@@ -11,6 +11,7 @@ import {
 } from "./form.styles";
 
 type GuestTypes = {
+  place: any;
   header: string;
   handleChange: any;
   handleNext: () => void;
@@ -18,6 +19,7 @@ type GuestTypes = {
 };
 
 export const Guests: React.FC<GuestTypes> = ({
+  place,
   header,
   handleChange,
   handleBack,
@@ -75,7 +77,15 @@ export const Guests: React.FC<GuestTypes> = ({
             <PrimaryButton type="button" onClick={handleBack}>
               Back
             </PrimaryButton>
-            <Button type="button" onClick={handleNext}>
+            <Button
+              type="button"
+              onClick={handleNext}
+              disabled={
+                place.guests && place.beds && place.bedRooms && place.bathRooms
+                  ? false
+                  : true
+              }
+            >
               Next
             </Button>
           </StickyButtons>

@@ -13,6 +13,7 @@ import {
 } from "../form-steps/form.styles";
 
 type AmenitiesTypes = {
+  place: any;
   header: string;
   handleChange: any;
   handleNext: () => void;
@@ -20,6 +21,7 @@ type AmenitiesTypes = {
 };
 
 export const Amenities: React.FC<AmenitiesTypes> = ({
+  place,
   header,
   handleChange,
   handleNext,
@@ -58,7 +60,7 @@ export const Amenities: React.FC<AmenitiesTypes> = ({
                 onChange={handleChange}
                 type="checkbox"
                 name="amenities"
-                id="hot-tub"
+                id="bbq-grill"
                 value="bbq-grill"
               />
             </Checkbox>
@@ -86,7 +88,7 @@ export const Amenities: React.FC<AmenitiesTypes> = ({
             </Checkbox>
 
             <Checkbox>
-              <label htmlFor="indoor-fieplace">Indoor fireplace</label>
+              <label htmlFor="indoor-fireplace">Indoor fireplace</label>
               <Input
                 onChange={handleChange}
                 type="checkbox"
@@ -177,7 +179,11 @@ export const Amenities: React.FC<AmenitiesTypes> = ({
             <PrimaryButton type="button" onClick={handleBack}>
               Back
             </PrimaryButton>
-            <Button type="button" onClick={handleNext}>
+            <Button
+              type="button"
+              onClick={handleNext}
+              disabled={place ? false : true}
+            >
               Next
             </Button>
           </StickyButtons>

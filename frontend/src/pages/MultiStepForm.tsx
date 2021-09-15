@@ -39,11 +39,8 @@ type StateTypes = {
 };
 
 export const MultiStepForm: React.FC = () => {
-  const [step, setSteps] = useState(7);
+  const [step, setSteps] = useState(1);
   const [userDetails, setUserDetails] = useState({} as any);
-  const [previewImage, setPreviewImage] = useState("");
-  const [uploadedPhoto, setUploadedPhoto] = useState("");
-
   const [formData, setFormData] = useState<StateTypes>({
     userID: "",
     place: "",
@@ -66,11 +63,11 @@ export const MultiStepForm: React.FC = () => {
   });
 
   useEffect(() => {
+    // Move the code below
+    // Once landing page is created.
     const loggedUser = isAuth();
     setUserDetails(loggedUser);
-  }, [formData.userID]);
-
-  console.log(userDetails._id);
+  }, []);
 
   const handleNext = () => {
     setSteps((prevState) => prevState + 1);
@@ -110,7 +107,6 @@ export const MultiStepForm: React.FC = () => {
       .then((error) => console.log(error));
   };
 
-  console.log();
   const switchSteps = () => {
     switch (step) {
       case 1:
@@ -145,6 +141,7 @@ export const MultiStepForm: React.FC = () => {
       case 4:
         return (
           <Address
+            place={formData}
             header="Where is your place located?"
             handleChange={handleChange}
             handleNext={handleNext}
@@ -155,6 +152,7 @@ export const MultiStepForm: React.FC = () => {
       case 5:
         return (
           <Guests
+            place={formData}
             header="How many guests would you like to welcome?"
             handleChange={handleChange}
             handleNext={handleNext}
@@ -165,6 +163,7 @@ export const MultiStepForm: React.FC = () => {
       case 6:
         return (
           <Amenities
+            place={formData}
             header="Let guests know what your place has to offer."
             handleChange={handleChange}
             handleNext={handleNext}
@@ -174,12 +173,9 @@ export const MultiStepForm: React.FC = () => {
       case 7:
         return (
           <UploadPhoto
+            place={formData}
             header="Let's add some photos of your place."
-            previewImage={previewImage}
-            setPreviewImage={setPreviewImage}
-            setUploadedPhoto={setUploadedPhoto}
             setFormData={setFormData}
-            formData={formData}
             handleBack={handleBack}
             handleNext={handleNext}
           />
@@ -188,6 +184,7 @@ export const MultiStepForm: React.FC = () => {
       case 8:
         return (
           <PlaceDescription
+            place={formData}
             header="A little more details for your place."
             handleChange={handleChange}
             handleNext={handleNext}
@@ -198,9 +195,8 @@ export const MultiStepForm: React.FC = () => {
       case 9:
         return (
           <Preview
-            userDetails={userDetails}
             place={formData}
-            uploadedPhoto={uploadedPhoto}
+            userDetails={userDetails}
             header="Check out your listing!"
             handleSubmit={handleSubmit}
             handleBack={handleBack}
@@ -210,6 +206,5 @@ export const MultiStepForm: React.FC = () => {
         break;
     }
   };
-  console.log("Form Data", formData);
   return <Form>{switchSteps()}</Form>;
 };

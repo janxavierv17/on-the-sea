@@ -3,11 +3,11 @@ const { Schema } = mongoose;
 
 // Schema
 const placeSchema = new Schema({
-  userID: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
+  // userID: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "User",
+  //   required: false,
+  // },
   place: { type: String, required: false },
   title: { type: String, required: false },
   beds: { type: String, required: false },
