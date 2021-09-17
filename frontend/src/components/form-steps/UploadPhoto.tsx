@@ -44,7 +44,7 @@ export const UploadPhoto: React.FC<IProps> = ({
         return { ...prevState, images: data.data.url };
       });
     } catch (error) {
-      console.log("Something went wrong with handleUpload function", error);
+      console.log("Upload component", error);
     }
   };
   return (
