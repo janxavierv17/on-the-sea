@@ -1,5 +1,7 @@
-import { ChangeEvent, useState, useEffect } from "react";
+import { ChangeEvent, useState, useEffect, useContext } from "react";
+import { UserContext } from "../components/context";
 import axios from "axios";
+
 // Helpers Local Storage
 import { isAuth } from "../components/auth/helpers";
 
@@ -39,6 +41,8 @@ type StateTypes = {
 };
 
 export const MultiStepForm: React.FC = () => {
+  const [setUserState] = useContext(UserContext);
+
   const [step, setSteps] = useState(1);
   const [userDetails, setUserDetails] = useState({} as any);
   const [formData, setFormData] = useState<StateTypes>({

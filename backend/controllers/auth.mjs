@@ -55,6 +55,7 @@ export const signIn = async (request, response) => {
     });
   } catch (error) {
     console.log("Something went wrong with Sign In:", error);
+    return response.status(400).send("Error. Try again later");
   }
 };
 
